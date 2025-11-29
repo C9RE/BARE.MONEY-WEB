@@ -507,24 +507,48 @@ export default function DocsPage() {
               </div>
             </section>
 
-            {/* CTA */}
-            <section className="card bg-bare-accent text-white text-center py-8">
-              <h3 className="font-display text-2xl font-bold mb-4">
-                Ready to get started?
-              </h3>
-              <p className="text-white/80 mb-6">
-                Free forever. No credit card required.
-              </p>
-              <a
-                href="https://juno.bare.money"
-                className="inline-block bg-white text-bare-accent font-semibold px-8 py-3 rounded-xl hover:bg-bare-bg transition-colors"
-              >
-                Open bare.money
-              </a>
-            </section>
           </main>
         </div>
       </div>
+
+      {/* CTA */}
+      <section className="bg-bare-accent py-16">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h3 className="font-display text-3xl font-bold text-white mb-4">
+            Ready to get started?
+          </h3>
+          <p className="text-white/80 mb-8">
+            Free forever. No credit card required.
+          </p>
+          <a
+            href="https://juno.bare.money"
+            className="inline-block bg-white text-bare-accent font-semibold px-8 py-3 rounded-xl hover:bg-bare-bg transition-colors"
+          >
+            Open bare.money
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-bare-bg border-t border-bare-card-border py-8">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-display text-lg font-bold">
+            <span className="gradient-text">bare</span>
+            <span className="text-bare-muted">.money</span>
+          </p>
+          <div className="flex items-center gap-6 text-bare-muted text-sm">
+            <Link href="/privacy" className="hover:text-bare-text transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-bare-text transition-colors">
+              Terms
+            </Link>
+            <Link href="/docs" className="hover:text-bare-text transition-colors">
+              Docs
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
