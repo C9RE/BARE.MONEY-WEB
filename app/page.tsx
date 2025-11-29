@@ -114,12 +114,20 @@ export default function LandingPage() {
               <span className="gradient-text">bare</span>
               <span className="text-bare-muted">.money</span>
             </h1>
-            <a
-              href="https://juno.bare.money"
-              className="text-bare-accent font-semibold hover:text-bare-accent-hover transition-colors"
-            >
-              Sign In
-            </a>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/docs"
+                className="text-bare-muted font-medium hover:text-bare-text transition-colors"
+              >
+                Docs
+              </Link>
+              <a
+                href="https://juno.bare.money"
+                className="text-bare-accent font-semibold hover:text-bare-accent-hover transition-colors"
+              >
+                Sign In
+              </a>
+            </div>
           </div>
         </nav>
 
