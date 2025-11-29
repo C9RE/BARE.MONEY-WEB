@@ -39,3 +39,13 @@ body {
   @apply hover:bg-bare-accent/10 active:scale-[0.98] transition-all duration-200;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
 }
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

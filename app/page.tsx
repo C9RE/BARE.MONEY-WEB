@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Wallet, Brain, Receipt, Shield, Smartphone, Zap, Star, ChevronDown } from 'lucide-react'
@@ -9,100 +9,285 @@ export default function LandingPage() {
   return (
     <>
       {/* ========== MOBILE LAYOUT ========== */}
-      <main className="lg:hidden min-h-screen flex flex-col items-center justify-between px-6 py-12">
-        {/* Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-md flex-1 flex flex-col justify-center"
-        >
-          {/* Logo/Brand */}
-          <h1 className="font-display text-5xl font-bold mb-2">
-            <span className="gradient-text">bare</span>
-            <span className="text-bare-muted">.money</span>
-          </h1>
-
-          <p className="text-bare-accent font-semibold text-sm uppercase tracking-wide mb-6">
-            No B.S. budgeting
-          </p>
-
-          <p className="text-bare-muted text-lg mb-8">
-            Your balance. Your bills. The truth about
-            <br />
-            whether you can afford that takeaway.
-            <br />
-            <span className="text-bare-text font-medium">Straight talk. Zero fluff.</span>
-          </p>
-
-          {/* Features */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="space-y-4 mb-10"
-          >
-            <MobileFeatureItem
-              title="Real numbers"
-              description="Live balance from Monzo. No guessing."
-            />
-            <MobileFeatureItem
-              title="Juno tells it straight"
-              description="AI coach that won't sugarcoat your spending"
-            />
-            <MobileFeatureItem
-              title="Bills sorted"
-              description="Know what's coming out before you spend"
-            />
-          </motion.div>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
-          >
+      <main className="lg:hidden min-h-screen bg-bare-bg">
+        {/* Mobile Header */}
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-bare-card-border px-6 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="font-display text-2xl font-bold">
+              <span className="gradient-text">bare</span>
+              <span className="text-bare-muted">.money</span>
+            </h1>
             <a
               href="https://juno.bare.money"
-              className="btn-primary inline-block w-full text-center text-lg"
+              className="btn-primary text-sm py-2 px-4"
             >
               Get Started
             </a>
-            <p className="text-bare-muted text-sm mt-4">
-              Free forever. Open source.
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="px-6 py-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-bare-accent font-semibold text-sm uppercase tracking-wide mb-4">
+              No B.S. budgeting
             </p>
 
-            {/* Disclaimer */}
-            <div className="mt-6 text-xs text-bare-muted space-y-1 text-center">
-              <p className="flex items-center justify-center gap-1">
-                <UKFlag /> UK only · Requires Monzo account
-              </p>
-              <p>Read-only access · We never move your money</p>
+            <h2 className="font-display text-4xl font-bold text-bare-text mb-4 leading-tight">
+              The bare truth about your money
+            </h2>
+
+            <p className="text-bare-muted text-lg mb-8">
+              Your balance. Your bills. Whether you can afford that takeaway.
+              <span className="text-bare-text font-medium"> Straight talk. Zero fluff.</span>
+            </p>
+
+            {/* Mini App Preview */}
+            <div className="card mx-auto max-w-xs mb-8">
+              <div className="text-center mb-4">
+                <p className="text-bare-muted text-sm mb-1">Safe to spend</p>
+                <p className="font-display text-4xl font-bold text-bare-safe">£847</p>
+                <p className="text-bare-muted text-sm mt-1">until Thursday</p>
+              </div>
+              <div className="flex items-start gap-3 pt-4 border-t border-bare-card-border">
+                <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-4 h-4 text-white" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-medium text-bare-text">Juno</p>
+                  <p className="text-sm text-bare-muted">Looking solid. Just watch the Deliveroo habit.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-bare-muted">
+              <span className="flex items-center gap-2">
+                <UKFlag />
+                <span>UK only</span>
+              </span>
+              <span className="text-bare-card-border">|</span>
+              <span>Requires Monzo</span>
+              <span className="text-bare-card-border">|</span>
+              <span>Free forever</span>
             </div>
           </motion.div>
-        </motion.div>
+        </section>
+
+        {/* Features Section */}
+        <section className="px-6 py-12 bg-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h3 className="font-display text-2xl font-bold text-bare-text mb-2">
+              Budgeting that makes sense
+            </h3>
+            <p className="text-bare-muted">
+              No spreadsheets. No complicated categories.
+            </p>
+          </motion.div>
+
+          <div className="space-y-4">
+            <MobileFeatureCard
+              icon={<Wallet className="w-5 h-5" />}
+              title="Real-time balance"
+              description="Live data from Monzo. Know exactly where you stand."
+            />
+            <MobileFeatureCard
+              icon={<Brain className="w-5 h-5" />}
+              title="Juno AI coach"
+              description="Your personal money coach who tells it like it is."
+            />
+            <MobileFeatureCard
+              icon={<Receipt className="w-5 h-5" />}
+              title="Smart bill tracking"
+              description="Auto-detects bills and reserves money before you spend."
+            />
+            <MobileFeatureCard
+              icon={<Zap className="w-5 h-5" />}
+              title="Safe-to-spend"
+              description="Factors in bills, payday, and commitments automatically."
+            />
+            <MobileFeatureCard
+              icon={<Shield className="w-5 h-5" />}
+              title="Read-only access"
+              description="We can see transactions but never move your money."
+            />
+            <MobileFeatureCard
+              icon={<Smartphone className="w-5 h-5" />}
+              title="Works everywhere"
+              description="PWA on any device. iOS app with Face ID coming soon."
+            />
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8 px-6"
+          >
+            <h3 className="font-display text-2xl font-bold text-bare-text mb-2">
+              What people are saying
+            </h3>
+            <p className="text-bare-muted">Real feedback from real users</p>
+          </motion.div>
+
+          {/* Horizontal scroll testimonials */}
+          <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex gap-4 px-6 pb-4" style={{ width: 'max-content' }}>
+              <MobileTestimonialCard
+                quote="The safe-to-spend number is a game changer. I finally stopped guessing."
+                author="Sarah T."
+                role="Marketing Manager"
+              />
+              <MobileTestimonialCard
+                quote="I used to check my balance, panic, then spend anyway. Now the anxiety is gone."
+                author="James M."
+                role="Software Developer"
+              />
+              <MobileTestimonialCard
+                quote="Juno called me out on my Uber Eats addiction. Brutal, but needed."
+                author="Emma K."
+                role="Freelance Designer"
+              />
+            </div>
+          </div>
+          <p className="text-center text-bare-muted text-xs mt-2">Swipe for more →</p>
+        </section>
+
+        {/* How it Works */}
+        <section className="px-6 py-12 bg-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h3 className="font-display text-2xl font-bold text-bare-text">
+              Up and running in 2 minutes
+            </h3>
+          </motion.div>
+
+          <div className="space-y-6">
+            <MobileStepCard
+              number="1"
+              title="Connect Monzo"
+              description="One tap to link your account. Read-only, always."
+            />
+            <MobileStepCard
+              number="2"
+              title="Set your payday"
+              description="Tell us when you get paid. We'll handle the rest."
+            />
+            <MobileStepCard
+              number="3"
+              title="Live your life"
+              description="Check your safe-to-spend anytime. Juno keeps you honest."
+            />
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="px-6 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h3 className="font-display text-2xl font-bold text-bare-text">
+              Questions? Answered.
+            </h3>
+          </motion.div>
+
+          <div className="space-y-3">
+            <FAQItem
+              question="Is it really free?"
+              answer="Yes, completely free forever. No premium tier, no hidden fees. We built this for ourselves and decided to share it."
+            />
+            <FAQItem
+              question="Is my data safe?"
+              answer="Absolutely. We use read-only access to Monzo - we can see your transactions but can never move your money. Your tokens are encrypted at rest."
+            />
+            <FAQItem
+              question="What's 'safe-to-spend'?"
+              answer="It's your actual balance minus upcoming bills before your next payday. Instead of seeing £500 and thinking you're rich, you'll see the £200 you can actually spend."
+            />
+            <FAQItem
+              question="Who is Juno?"
+              answer="Juno is your AI money coach powered by Claude. She analyses your spending and gives you straight talk - no sugarcoating."
+            />
+            <FAQItem
+              question="Why only Monzo?"
+              answer="Monzo has the best API for real-time data. We may add other UK banks in the future through Open Banking."
+            />
+            <FAQItem
+              question="Can I use this on my phone?"
+              answer="Yes! It works as a PWA (add to home screen) on any device, and there's a native iOS app with Face ID support coming soon."
+            />
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="px-6 py-16 bg-bare-accent">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center"
+          >
+            <h3 className="font-display text-3xl font-bold text-white mb-4">
+              Ready to see the truth?
+            </h3>
+            <p className="text-white/80 mb-8">
+              Free forever. No credit card. No bullshit.
+            </p>
+            <a
+              href="https://juno.bare.money"
+              className="inline-block bg-white text-bare-accent font-semibold text-lg px-8 py-4 rounded-xl hover:bg-bare-bg transition-colors"
+            >
+              Get Started
+            </a>
+          </motion.div>
+        </section>
 
         {/* Footer */}
-        <motion.footer
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="w-full max-w-2xl mt-12"
-        >
-          <div className="flex items-center justify-center gap-4 text-bare-muted text-xs">
-            <Link href="/privacy" className="hover:text-bare-text transition-colors">
-              Privacy
-            </Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-bare-text transition-colors">
-              Terms
-            </Link>
-            <span>·</span>
-            <Link href="/docs" className="hover:text-bare-text transition-colors">
-              Docs
-            </Link>
+        <footer className="px-6 py-8 bg-white border-t border-bare-card-border">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex items-center gap-2">
+              <h1 className="font-display text-lg font-bold">
+                <span className="gradient-text">bare</span>
+                <span className="text-bare-muted">.money</span>
+              </h1>
+              <span className="text-bare-muted text-sm">— No B.S. budgeting</span>
+            </div>
+            <div className="flex items-center gap-6 text-bare-muted text-sm">
+              <Link href="/privacy" className="hover:text-bare-text transition-colors">
+                Privacy
+              </Link>
+              <Link href="/terms" className="hover:text-bare-text transition-colors">
+                Terms
+              </Link>
+              <Link href="/docs" className="hover:text-bare-text transition-colors">
+                Docs
+              </Link>
+            </div>
           </div>
-        </motion.footer>
+        </footer>
       </main>
 
       {/* ========== DESKTOP LAYOUT ========== */}
@@ -477,19 +662,87 @@ export default function LandingPage() {
   )
 }
 
-// Mobile feature item (simple card style)
-function MobileFeatureItem({
+// Mobile feature card with icon
+function MobileFeatureCard({
+  icon,
   title,
   description,
 }: {
+  icon: React.ReactNode
   title: string
   description: string
 }) {
   return (
-    <div className="card text-left">
-      <h3 className="font-display font-semibold text-bare-safe">{title}</h3>
-      <p className="text-bare-muted text-sm">{description}</p>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3 }}
+      className="card flex items-start gap-4"
+    >
+      <div className="w-10 h-10 rounded-xl bg-bare-accent-soft flex items-center justify-center text-bare-accent flex-shrink-0">
+        {icon}
+      </div>
+      <div>
+        <h4 className="font-display font-semibold text-bare-text mb-1">{title}</h4>
+        <p className="text-bare-muted text-sm">{description}</p>
+      </div>
+    </motion.div>
+  )
+}
+
+// Mobile testimonial card
+function MobileTestimonialCard({
+  quote,
+  author,
+  role,
+}: {
+  quote: string
+  author: string
+  role: string
+}) {
+  return (
+    <div className="card w-72 flex-shrink-0">
+      <div className="flex gap-1 mb-3">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="w-4 h-4 fill-bare-warning text-bare-warning" />
+        ))}
+      </div>
+      <p className="text-bare-text text-sm mb-4">&ldquo;{quote}&rdquo;</p>
+      <div>
+        <p className="font-semibold text-bare-text text-sm">{author}</p>
+        <p className="text-bare-muted text-xs">{role}</p>
+      </div>
     </div>
+  )
+}
+
+// Mobile step card
+function MobileStepCard({
+  number,
+  title,
+  description,
+}: {
+  number: string
+  title: string
+  description: string
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.3 }}
+      className="flex items-start gap-4"
+    >
+      <div className="w-10 h-10 rounded-full bg-bare-accent text-white font-display font-bold flex items-center justify-center flex-shrink-0">
+        {number}
+      </div>
+      <div>
+        <h4 className="font-display font-semibold text-bare-text mb-1">{title}</h4>
+        <p className="text-bare-muted text-sm">{description}</p>
+      </div>
+    </motion.div>
   )
 }
 
