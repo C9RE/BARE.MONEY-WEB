@@ -98,14 +98,9 @@ export default function LandingPage() {
               Terms
             </Link>
             <span>·</span>
-            <a
-              href="https://github.com/C9RE/BARE.MONEY"
-              className="hover:text-bare-text transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+            <Link href="/docs" className="hover:text-bare-text transition-colors">
+              Docs
+            </Link>
           </div>
         </motion.footer>
       </main>
@@ -462,14 +457,9 @@ export default function LandingPage() {
                 <Link href="/terms" className="hover:text-bare-text transition-colors">
                   Terms
                 </Link>
-                <a
-                  href="https://github.com/C9RE/BARE.MONEY"
-                  className="hover:text-bare-text transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
+                <Link href="/docs" className="hover:text-bare-text transition-colors">
+                  Docs
+                </Link>
               </div>
             </div>
           </div>
