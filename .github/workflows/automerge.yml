@@ -1,23 +1,9 @@
-name: Automerge
+name: Auto-merge PRs
 
 on:
-  pull_request:
-    types:
-      - labeled
-      - unlabeled
-      - synchronize
-      - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
-    types:
-      - completed
-  status: {}
+  push:
+    branches:
+      - 'claude/**'
 
 permissions:
   contents: write
@@ -26,15 +12,52 @@ permissions:
 jobs:
   automerge:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'automerge')
     steps:
-      - name: Automerge
-        uses: pascalgn/automerge-action@v0.16.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MERGE_LABELS: automerge
-          MERGE_METHOD: squash
-          MERGE_COMMIT_MESSAGE: pull-request-title
-          MERGE_DELETE_BRANCH: true
-          UPDATE_LABELS: ""
-          UPDATE_METHOD: rebase
+      - name: Auto-create and merge PR
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            console.log(`Branch: ${branch}`);
+
+            // Check for existing PR
+            let { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              head: `${context.repo.owner}:${branch}`
+            });
+
+            let pr;
+
+            if (prs.length === 0) {
+              // Create PR if none exists
+              console.log('No PR found, creating one...');
+              const { data: newPr } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Auto-merge: ${branch}`,
+                head: branch,
+                base: 'main',
+                body: 'Automated PR from claude branch'
+              });
+              pr = newPr;
+              console.log(`Created PR #${pr.number}`);
+            } else {
+              pr = prs[0];
+              console.log(`Found existing PR #${pr.number}`);
+            }
+
+            // Merge immediately
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'merge'
+              });
+              console.log(`Merged PR #${pr.number}`);
+            } catch (e) {
+              console.log(`Merge failed: ${e.message}`);
+            }
