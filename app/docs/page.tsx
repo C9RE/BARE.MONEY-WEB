@@ -11,7 +11,11 @@ import {
   Settings,
   HelpCircle,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  Flame,
+  Scale,
+  Heart,
+  Lock
 } from 'lucide-react'
 
 const sections = [
@@ -238,8 +242,8 @@ export default function DocsPage() {
                 </div>
 
                 <div className="card bg-bare-accent/5 border-bare-accent/20">
-                  <h3 className="font-display text-lg font-semibold text-bare-accent mb-2">
-                    🔒 Security Note
+                  <h3 className="font-display text-lg font-semibold text-bare-accent mb-2 flex items-center gap-2">
+                    <Lock size={18} /> Security Note
                   </h3>
                   <p className="text-bare-muted text-sm">
                     Your Monzo credentials are encrypted with AES-256-GCM before being stored.
@@ -344,15 +348,15 @@ export default function DocsPage() {
                   </h3>
                   <div className="space-y-4">
                     <div className="p-4 bg-bare-bg rounded-xl">
-                      <p className="font-semibold text-bare-text mb-1">🔥 Brutal</p>
+                      <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Flame size={16} className="text-bare-danger" /> Brutal</p>
                       <p className="text-bare-muted text-sm">&quot;What happened here? That&apos;s three takeaways in two days.&quot;</p>
                     </div>
                     <div className="p-4 bg-bare-bg rounded-xl">
-                      <p className="font-semibold text-bare-text mb-1">⚖️ Balanced</p>
+                      <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Scale size={16} className="text-bare-accent" /> Balanced</p>
                       <p className="text-bare-muted text-sm">&quot;Bit tight this week, but you&apos;ll survive if you watch the spending.&quot;</p>
                     </div>
                     <div className="p-4 bg-bare-bg rounded-xl">
-                      <p className="font-semibold text-bare-text mb-1">💚 Gentle</p>
+                      <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Heart size={16} className="text-bare-safe" /> Gentle</p>
                       <p className="text-bare-muted text-sm">&quot;Things are looking a bit stretched - maybe ease up on extras.&quot;</p>
                     </div>
                   </div>
