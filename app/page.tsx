@@ -21,7 +21,7 @@ export default function LandingPage() {
               href="https://juno.bare.money"
               className="btn-primary text-sm py-2 px-4"
             >
-              Get Started
+              Get Started Free
             </a>
           </div>
         </header>

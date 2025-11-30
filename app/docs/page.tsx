@@ -56,6 +56,24 @@ function CopyButton({ text }: { text: string }) {
   )
 }
 
+function ScreenshotPlaceholder({ label }: { label: string }) {
+  return (
+    <div
+      className="bg-bare-bg border-2 border-dashed border-bare-card-border rounded-lg p-6 flex flex-col items-center justify-center text-center"
+      role="img"
+      aria-label={`Placeholder: ${label} screenshot coming soon`}
+    >
+      <div className="w-10 h-10 rounded-full bg-bare-card-border/50 flex items-center justify-center mb-3">
+        <svg className="w-5 h-5 text-bare-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <p className="text-xs font-medium text-bare-muted">{label}</p>
+      <p className="text-xs text-bare-muted/70 mt-1">Screenshot coming soon</p>
+    </div>
+  )
+}
+
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState('getting-started')
 
@@ -259,9 +277,7 @@ export default function DocsPage() {
                       <div className="flex-1">
                         <p className="font-medium text-bare-text mb-2">Go to Monzo Developer Portal</p>
                         <p className="text-sm mb-2">Open <a href="https://developers.monzo.com" target="_blank" rel="noopener noreferrer" className="text-bare-accent hover:underline inline-flex items-center gap-1">developers.monzo.com <ExternalLink size={14} /></a> and sign in with your Monzo account.</p>
-                        <div className="bg-bare-bg rounded-lg p-3 text-xs text-bare-muted italic">
-                          [Screenshot: Monzo developer portal login page]
-                        </div>
+                        <ScreenshotPlaceholder label="Monzo developer portal login page" />
                       </div>
                     </li>
                     <li className="flex gap-4">
@@ -269,8 +285,8 @@ export default function DocsPage() {
                       <div className="flex-1">
                         <p className="font-medium text-bare-text mb-2">Create a new OAuth Client</p>
                         <p className="text-sm">Click &quot;New OAuth Client&quot; in the Clients section.</p>
-                        <div className="bg-bare-bg rounded-lg p-3 text-xs text-bare-muted italic mt-2">
-                          [Screenshot: New OAuth Client button]
+                        <div className="mt-2">
+                          <ScreenshotPlaceholder label="New OAuth Client button" />
                         </div>
                       </div>
                     </li>
@@ -309,9 +325,7 @@ export default function DocsPage() {
                       <div className="flex-1">
                         <p className="font-medium text-bare-text mb-2">Copy your credentials</p>
                         <p className="text-sm mb-2">After creating the client, you&apos;ll see your <strong>Client ID</strong> and <strong>Client Secret</strong>. Copy both — you&apos;ll need them in bare.money.</p>
-                        <div className="bg-bare-bg rounded-lg p-3 text-xs text-bare-muted italic">
-                          [Screenshot: Client ID and Secret display]
-                        </div>
+                        <ScreenshotPlaceholder label="Client ID and Secret display" />
                       </div>
                     </li>
                     <li className="flex gap-4">

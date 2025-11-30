@@ -29,7 +29,7 @@ export default function PrivacyPage() {
               </li>
               <li className="flex items-start gap-2">
                 <Brain className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
-                <span>Juno AI uses Anthropic&apos;s Claude — transaction <strong>summaries</strong> (not raw data) are sent for coaching</span>
+                <span>Juno AI uses Anthropic&apos;s Claude — we send <strong>limited transaction data</strong> for coaching (not your full history)</span>
               </li>
               <li className="flex items-start gap-2">
                 <Shield className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
@@ -107,21 +107,21 @@ export default function PrivacyPage() {
               Juno AI &amp; Anthropic
             </h2>
             <p className="mb-4">
-              Juno, your AI money coach, is powered by <strong>Anthropic&apos;s Claude</strong>. When you use Juno, we send:
+              Juno, your AI money coach, is powered by <strong>Anthropic&apos;s Claude</strong>. To give you contextual advice, we send:
             </p>
             <ul className="list-disc list-inside space-y-1 mb-4">
-              <li><strong>Transaction summaries</strong> — aggregated spending categories and amounts</li>
               <li><strong>Safe-to-spend amount</strong> — your current available balance</li>
+              <li><strong>Category totals</strong> — aggregated spending by category</li>
+              <li><strong>Recent transactions</strong> — a small number of recent transactions (amount, merchant name, and description)</li>
               <li><strong>Bill status</strong> — upcoming bills and due dates</li>
             </ul>
             <p className="mb-4">
               We do <strong>not</strong> send:
             </p>
             <ul className="list-disc list-inside space-y-1 mb-4">
-              <li>Raw transaction descriptions or merchant names</li>
               <li>Your full transaction history</li>
               <li>Your Monzo account number or sort code</li>
-              <li>Any personally identifiable information</li>
+              <li>Any personally identifiable information beyond transaction details</li>
             </ul>
             <p className="text-sm">
               Anthropic&apos;s privacy policy applies to data processed by Claude:{' '}
@@ -137,7 +137,7 @@ export default function PrivacyPage() {
             <ul className="list-disc list-inside space-y-2">
               <li>We <strong>never</strong> move your money — read-only access only</li>
               <li>We <strong>never</strong> sell your data to anyone</li>
-              <li>We <strong>never</strong> share raw transaction data with third parties</li>
+              <li>We <strong>never</strong> share your data with third parties except Anthropic for Juno AI (as described above)</li>
               <li>We <strong>never</strong> use tracking cookies or analytics that identify you</li>
               <li>We <strong>never</strong> use your data for advertising</li>
             </ul>
