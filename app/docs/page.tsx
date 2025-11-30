@@ -19,7 +19,8 @@ import {
   Copy,
   Check,
   AlertTriangle,
-  Calculator
+  Calculator,
+  RefreshCw
 } from 'lucide-react'
 
 const sections = [
@@ -29,6 +30,7 @@ const sections = [
   { id: 'juno-ai', title: 'Juno AI Coach', icon: Brain },
   { id: 'bills-income', title: 'Bills & Income', icon: Receipt },
   { id: 'security', title: 'Security & Privacy', icon: Shield },
+  { id: 'troubleshooting', title: 'Troubleshooting', icon: RefreshCw },
   { id: 'faq', title: 'FAQ', icon: HelpCircle },
 ]
 
@@ -215,6 +217,7 @@ export default function DocsPage() {
                       <div>
                         <p className="font-medium text-bare-text">Connect Monzo</p>
                         <p className="text-bare-muted text-sm">Authorise read-only access (we can never move your money)</p>
+                        <p className="text-bare-muted text-sm mt-2">After signing in, <strong>approve the connection in your Monzo app</strong> when prompted. Then return to Juno and tap &quot;Retry&quot; to complete the connection.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -222,6 +225,7 @@ export default function DocsPage() {
                       <div>
                         <p className="font-medium text-bare-text">Set your payday</p>
                         <p className="text-bare-muted text-sm">Tell us when you get paid so we can calculate properly</p>
+                        <p className="text-bare-muted text-sm mt-2">Juno syncs your newest transactions first, then backfills older history. Your initial sync may fetch up to ~1,000 transactions so your recent activity is always available.</p>
                       </div>
                     </div>
                   </div>
@@ -659,6 +663,93 @@ export default function DocsPage() {
                   <Link href="/privacy" className="text-bare-accent hover:underline font-medium">
                     Read our full Privacy Policy →
                   </Link>
+                </div>
+              </div>
+            </section>
+
+            {/* Troubleshooting */}
+            <section id="troubleshooting" className="scroll-mt-24">
+              <h2 className="font-display text-3xl font-bold text-bare-text mb-6">
+                Troubleshooting
+              </h2>
+              <div className="space-y-6">
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Reconnecting to Monzo
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    If you see an &quot;insufficient permissions&quot; error, it usually means your Monzo Developer App was changed or the connection was removed from Monzo&apos;s side.
+                  </p>
+                  <p className="text-bare-muted mb-4">
+                    <strong>To fix this:</strong>
+                  </p>
+                  <ol className="list-decimal list-inside space-y-2 text-bare-muted text-sm">
+                    <li>Go to <strong>Settings → Connected Accounts → Disconnect Monzo</strong></li>
+                    <li>Check your credentials at <a href="https://developers.monzo.com" target="_blank" rel="noopener noreferrer" className="text-bare-accent hover:underline">developers.monzo.com</a></li>
+                    <li>Re-enter your Client ID and Client Secret in Juno</li>
+                    <li>Reconnect and approve access in your Monzo app</li>
+                  </ol>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Forcing a Fresh Sync
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Juno syncs your <strong>newest transactions first</strong>, then backfills older history. This ensures your recent activity always appears, even if you have a large transaction history.
+                  </p>
+                  <ul className="space-y-2 text-bare-muted text-sm">
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Initial sync can fetch up to ~1,000 transactions across multiple pages</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Juno registers webhooks with Monzo for near real-time updates</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>After spending, new transactions should appear within seconds</span>
+                    </li>
+                  </ul>
+                  <p className="text-bare-muted text-sm mt-4">
+                    Webhooks are enabled automatically the next time you open the app. If transactions seem delayed, try closing and reopening Juno.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Monzo SCA (Strong Customer Authentication)
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Monzo may ask you to re-approve access after long periods of inactivity or after large syncs. This is normal security behaviour.
+                  </p>
+                  <ul className="space-y-2 text-bare-muted text-sm">
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>If Juno shows &quot;Needs approval,&quot; check your Monzo app for a notification</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Approve the access request in Monzo, then return to Juno</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Tap &quot;Retry&quot; in Juno to complete the connection</span>
+                    </li>
+                  </ul>
+                  <p className="text-bare-muted text-sm mt-4">
+                    This approval step prevents the Activity page from appearing empty — Juno now waits for you to confirm before fetching data.
+                  </p>
+                </div>
+
+                <div className="card bg-bare-accent-soft border-bare-accent/20">
+                  <h3 className="font-display text-lg font-semibold text-bare-accent mb-2">
+                    Still having issues?
+                  </h3>
+                  <p className="text-bare-muted text-sm">
+                    If problems persist after trying the steps above, try disconnecting Monzo completely and setting up the connection again from scratch. This clears any stale tokens and ensures a fresh start.
+                  </p>
                 </div>
               </div>
             </section>

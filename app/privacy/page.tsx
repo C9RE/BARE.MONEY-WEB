@@ -50,6 +50,7 @@ export default function PrivacyPage() {
               <li><strong>Monzo account data</strong> (read-only) — balance, transactions, account info</li>
               <li><strong>Your preferences</strong> — Juno personality, payday settings, bill configurations</li>
               <li><strong>Monzo OAuth credentials</strong> — your client ID and secret (encrypted)</li>
+              <li><strong>Monzo webhooks</strong> — Juno registers webhooks with Monzo for faster transaction updates</li>
             </ul>
           </section>
 
