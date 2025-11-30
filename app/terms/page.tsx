@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { AlertTriangle, Scale, Shield, Brain, FileText } from 'lucide-react'
 
 export default function TermsPage() {
   return (
@@ -8,49 +9,191 @@ export default function TermsPage() {
           ← Back
         </Link>
 
-        <h1 className="font-display text-4xl font-bold mb-8">Terms of Service</h1>
+        <h1 className="font-display text-4xl font-bold mb-4">Terms of Service</h1>
+        <p className="text-bare-muted mb-8">
+          <strong className="text-bare-text">Last updated:</strong> November 2024
+        </p>
 
         <div className="prose prose-bare space-y-6 text-bare-muted">
-          <p className="text-lg">
-            <strong className="text-bare-text">Last updated:</strong> November 2024
-          </p>
-
-          <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">The basics</h2>
-            <p>bare.money is a free budgeting tool. We provide it as-is, with no guarantees. Don&apos;t rely on it for critical financial decisions - always check your actual bank account.</p>
+          {/* TL;DR */}
+          <section className="card bg-bare-accent-soft border-bare-accent/20">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">TL;DR</h2>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2">
+                <FileText className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
+                <span>bare.money is a free budgeting tool provided <strong>&quot;as is&quot;</strong></span>
+              </li>
+              <li className="flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
+                <span>This is <strong>not financial advice</strong> — always check your actual bank balance</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Shield className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
+                <span>We never move your money — <strong>read-only access only</strong></span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Scale className="w-4 h-4 text-bare-accent mt-0.5 flex-shrink-0" />
+                <span>Governed by the laws of <strong>England &amp; Wales</strong></span>
+              </li>
+            </ul>
           </section>
 
+          {/* The Service */}
           <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Your responsibilities</h2>
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">The Service</h2>
+            <p className="mb-4">
+              bare.money is a free, open-source budgeting application that connects to your Monzo bank account to help you understand your spending and calculate a &quot;safe-to-spend&quot; amount.
+            </p>
+            <p>
+              The service is provided <strong>&quot;as is&quot;</strong> and <strong>&quot;as available&quot;</strong> without warranties of any kind, either express or implied.
+            </p>
+          </section>
+
+          {/* Not Financial Advice */}
+          <section className="card border-bare-warning/30 bg-bare-warning/5">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 text-bare-warning" />
+              Not Financial Advice
+            </h2>
+            <p className="mb-4">
+              <strong>bare.money is not a financial advisor.</strong> The safe-to-spend calculation, Juno AI coaching, and all other features are for informational and entertainment purposes only.
+            </p>
+            <p className="mb-4">
+              You should:
+            </p>
+            <ul className="list-disc list-inside space-y-1 mb-4">
+              <li>Always verify amounts with your actual Monzo balance</li>
+              <li>Not rely solely on bare.money for critical financial decisions</li>
+              <li>Consult a qualified financial advisor for professional advice</li>
+              <li>Understand that calculations are estimates and may not reflect your exact financial situation</li>
+            </ul>
+            <p className="text-sm font-medium">
+              We are not responsible for any financial decisions you make based on information from this app.
+            </p>
+          </section>
+
+          {/* Juno AI */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+              <Brain className="w-5 h-5 text-bare-accent" />
+              Juno AI Coach
+            </h2>
+            <p className="mb-4">
+              Juno is an AI assistant powered by Anthropic&apos;s Claude. Juno&apos;s responses are:
+            </p>
+            <ul className="list-disc list-inside space-y-1 mb-4">
+              <li>Generated by AI and may contain errors or inaccuracies</li>
+              <li>For general guidance and entertainment only</li>
+              <li>Not a substitute for professional financial advice</li>
+            </ul>
+            <p>
+              Use your own judgment when considering Juno&apos;s suggestions.
+            </p>
+          </section>
+
+          {/* Your Responsibilities */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Your Responsibilities</h2>
+            <p className="mb-4">By using bare.money, you agree to:</p>
             <ul className="list-disc list-inside space-y-2">
               <li>Keep your login credentials secure</li>
-              <li>Don&apos;t abuse the service</li>
-              <li>Don&apos;t try to hack or exploit the system</li>
+              <li>Protect your Monzo OAuth client credentials</li>
+              <li>Use the service lawfully and not abuse it</li>
+              <li>Not attempt to hack, exploit, or disrupt the service</li>
+              <li>Not use the service for any illegal purpose</li>
+              <li>Verify important financial information with your bank</li>
             </ul>
           </section>
 
+          {/* Our Responsibilities */}
           <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Our responsibilities</h2>
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Our Responsibilities</h2>
+            <p className="mb-4">We commit to:</p>
             <ul className="list-disc list-inside space-y-2">
-              <li>We&apos;ll do our best to keep the service running</li>
-              <li>We&apos;ll protect your data as described in our Privacy Policy</li>
-              <li>We&apos;ll never access your money - read-only, always</li>
+              <li>Making reasonable efforts to keep the service available</li>
+              <li>Protecting your data as described in our <Link href="/privacy" className="text-bare-accent hover:underline">Privacy Policy</Link></li>
+              <li>Never accessing your money — read-only access only, always</li>
+              <li>Being transparent about how your data is used</li>
             </ul>
           </section>
 
+          {/* Read-Only Access */}
           <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Juno AI</h2>
-            <p>Juno is an AI assistant. Her advice is for entertainment and general guidance only - not professional financial advice. Use your own judgment.</p>
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-bare-safe" />
+              Read-Only Bank Access
+            </h2>
+            <p>
+              bare.money uses <strong>read-only</strong> access to your Monzo account. We can view your balance, transactions, and account information, but we <strong>cannot</strong> initiate payments, transfers, or move money in any way. This is enforced by Monzo&apos;s API permissions.
+            </p>
           </section>
 
+          {/* Limitation of Liability */}
           <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Liability</h2>
-            <p>We&apos;re not liable for any financial decisions you make based on this app. The &quot;safe-to-spend&quot; calculation is an estimate - always verify with your actual bank balance.</p>
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Limitation of Liability</h2>
+            <p className="mb-4">
+              To the maximum extent permitted by law, bare.money and its operators shall not be liable for:
+            </p>
+            <ul className="list-disc list-inside space-y-2 mb-4">
+              <li>Any financial losses arising from use of the service</li>
+              <li>Decisions made based on safe-to-spend calculations</li>
+              <li>Inaccuracies in bill detection or balance calculations</li>
+              <li>Service interruptions or unavailability</li>
+              <li>Any indirect, incidental, or consequential damages</li>
+            </ul>
+            <p>
+              The safe-to-spend amount is an <strong>estimate</strong>. Always verify with your actual bank balance before making financial decisions.
+            </p>
           </section>
 
+          {/* Service Availability */}
           <section className="card">
-            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Changes</h2>
-            <p>We may update these terms. Continued use means you accept the new terms.</p>
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Service Availability</h2>
+            <p>
+              We do not guarantee that the service will be available at all times. We may suspend, modify, or discontinue the service at any time without notice. The service depends on third-party APIs (Monzo, Anthropic) which may have their own availability limitations.
+            </p>
+          </section>
+
+          {/* Account Termination */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Account Termination</h2>
+            <p className="mb-4">
+              <strong>You may</strong> delete your account at any time via Settings → Delete Account.
+            </p>
+            <p>
+              <strong>We may</strong> terminate or suspend your account if you violate these terms or abuse the service.
+            </p>
+          </section>
+
+          {/* Changes to Terms */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Changes to Terms</h2>
+            <p>
+              We may update these terms from time to time. Significant changes will be communicated via the app. Continued use of the service after changes constitutes acceptance of the new terms.
+            </p>
+          </section>
+
+          {/* Governing Law */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+              <Scale className="w-5 h-5 text-bare-accent" />
+              Governing Law
+            </h2>
+            <p>
+              These terms are governed by and construed in accordance with the laws of <strong>England and Wales</strong>. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+            </p>
+          </section>
+
+          {/* Contact */}
+          <section className="card">
+            <h2 className="font-display text-xl font-semibold text-bare-text mb-4">Contact</h2>
+            <p className="mb-2">
+              Questions about these terms? Reach out:
+            </p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Email: <a href="mailto:legal@bare.money" className="text-bare-accent hover:underline">legal@bare.money</a></li>
+              <li>GitHub: <a href="https://github.com/C9RE/BARE.MONEY" target="_blank" rel="noopener noreferrer" className="text-bare-accent hover:underline">github.com/C9RE/BARE.MONEY</a></li>
+            </ul>
           </section>
         </div>
       </div>

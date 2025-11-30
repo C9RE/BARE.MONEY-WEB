@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Wallet, Brain, Receipt, Shield, Smartphone, Zap, Star, ChevronDown } from 'lucide-react'
+import { Wallet, Brain, Receipt, Shield, Smartphone, Zap, Star, ChevronDown, Lock, Key } from 'lucide-react'
 
 export default function LandingPage() {
   return (
@@ -34,16 +34,16 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-bare-accent font-semibold text-sm uppercase tracking-wide mb-4">
-              No B.S. budgeting
+              Monzo budgeting for UK
             </p>
 
             <h2 className="font-display text-4xl font-bold text-bare-text mb-4 leading-tight">
-              The bare truth about your money
+              Always know what you can actually spend
             </h2>
 
             <p className="text-bare-muted text-lg mb-8">
-              Your balance. Your bills. Whether you can afford that takeaway.
-              <span className="text-bare-text font-medium"> Straight talk. Zero fluff.</span>
+              Your balance minus your bills equals your safe-to-spend.
+              <span className="text-bare-text font-medium"> No guessing. No spreadsheets.</span>
             </p>
 
             {/* Mini App Preview */}
@@ -77,8 +77,40 @@ export default function LandingPage() {
           </motion.div>
         </section>
 
+        {/* Trust Section */}
+        <section className="px-6 py-8 bg-white border-y border-bare-card-border">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3 }}
+            className="space-y-3"
+          >
+            <p className="text-xs text-bare-muted uppercase tracking-wide font-semibold text-center mb-4">Your data is safe</p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex items-center gap-2 text-sm text-bare-muted">
+                <Shield className="w-4 h-4 text-bare-safe flex-shrink-0" />
+                <span>Read-only access</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-bare-muted">
+                <Lock className="w-4 h-4 text-bare-safe flex-shrink-0" />
+                <span>AES-256 encrypted</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-bare-muted">
+                <Key className="w-4 h-4 text-bare-safe flex-shrink-0" />
+                <span>You control OAuth</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-bare-muted">
+                <Link href="/privacy" className="text-bare-accent hover:underline">
+                  Privacy Policy →
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Features Section */}
-        <section className="px-6 py-12 bg-white">
+        <section className="px-6 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,10 +119,10 @@ export default function LandingPage() {
             className="text-center mb-8"
           >
             <h3 className="font-display text-2xl font-bold text-bare-text mb-2">
-              Budgeting that makes sense
+              Everything you need, nothing you don&apos;t
             </h3>
             <p className="text-bare-muted">
-              No spreadsheets. No complicated categories.
+              Connect Monzo. Set payday. Done.
             </p>
           </motion.div>
 
@@ -163,7 +195,6 @@ export default function LandingPage() {
               />
             </div>
           </div>
-          <p className="text-center text-bare-muted text-xs mt-2">Swipe for more →</p>
         </section>
 
         {/* How it Works */}
@@ -328,16 +359,16 @@ export default function LandingPage() {
                 className="text-left"
               >
                 <p className="text-bare-accent font-semibold text-sm uppercase tracking-wide mb-4">
-                  No B.S. budgeting
+                  Monzo budgeting for UK
                 </p>
 
                 <h2 className="font-display text-6xl font-bold text-bare-text mb-6 leading-tight">
-                  The bare truth about your money
+                  Always know what you can actually spend
                 </h2>
 
                 <p className="text-bare-muted text-xl mb-8 max-w-lg">
-                  Your balance. Your bills. Whether you can afford that takeaway.
-                  <span className="text-bare-text font-medium"> Straight talk. Zero fluff.</span>
+                  Your balance minus your bills equals your safe-to-spend.
+                  <span className="text-bare-text font-medium"> No guessing. No spreadsheets.</span>
                 </p>
 
                 <div className="flex gap-4 mb-8">
@@ -425,8 +456,40 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Trust Section */}
+        <section className="px-12 py-6 bg-white border-y border-bare-card-border">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center justify-center gap-12"
+            >
+              <p className="text-sm text-bare-muted uppercase tracking-wide font-semibold">Your data is safe</p>
+              <div className="flex items-center gap-8">
+                <div className="flex items-center gap-2 text-sm text-bare-muted">
+                  <Shield className="w-4 h-4 text-bare-safe" />
+                  <span>Read-only access</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-bare-muted">
+                  <Lock className="w-4 h-4 text-bare-safe" />
+                  <span>AES-256 encrypted</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-bare-muted">
+                  <Key className="w-4 h-4 text-bare-safe" />
+                  <span>You control your OAuth app</span>
+                </div>
+                <Link href="/privacy" className="text-bare-accent hover:underline text-sm">
+                  Privacy Policy →
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Features Section */}
-        <section className="px-12 py-24 bg-white">
+        <section className="px-12 py-24">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -436,10 +499,10 @@ export default function LandingPage() {
               className="text-center mb-16"
             >
               <h3 className="font-display text-4xl font-bold text-bare-text mb-4">
-                Budgeting that actually makes sense
+                Everything you need, nothing you don&apos;t
               </h3>
               <p className="text-bare-muted text-lg max-w-2xl mx-auto">
-                No spreadsheets. No complicated categories. Just the truth about what you can spend.
+                Connect Monzo. Set payday. See what you can actually spend. That&apos;s it.
               </p>
             </motion.div>
 
