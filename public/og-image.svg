@@ -28,11 +28,6 @@
     Know what you can actually spend
   </text>
 
-  <!-- Subtitle -->
-  <text x="600" y="400" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#6B7280">
-    Free Monzo budgeting for UK
-  </text>
-
   <!-- Feature pills -->
   <g transform="translate(600, 480)">
     <!-- Read-only -->
