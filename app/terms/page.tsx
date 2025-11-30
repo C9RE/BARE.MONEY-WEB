@@ -42,7 +42,7 @@ export default function TermsPage() {
           <section className="card">
             <h2 className="font-display text-xl font-semibold text-bare-text mb-4">The Service</h2>
             <p className="mb-4">
-              bare.money is a free, open-source budgeting application that connects to your Monzo bank account to help you understand your spending and calculate a &quot;safe-to-spend&quot; amount.
+              bare.money is a free budgeting application that connects to your Monzo bank account to help you understand your spending and calculate a &quot;safe-to-spend&quot; amount.
             </p>
             <p>
               The service is provided <strong>&quot;as is&quot;</strong> and <strong>&quot;as available&quot;</strong> without warranties of any kind, either express or implied.
