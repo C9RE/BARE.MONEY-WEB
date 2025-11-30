@@ -249,7 +249,7 @@ export default function DocsPage() {
                     Why do I need my own credentials?
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    bare.money is open source, so we don&apos;t use a shared Monzo API key. Each user creates their own OAuth client at Monzo. This is actually <strong>more secure</strong>:
+                    For security, bare.money doesn&apos;t use a shared Monzo API key. Each user creates their own OAuth client at Monzo. This is actually <strong>more secure</strong>:
                   </p>
                   <ul className="space-y-2 text-bare-muted">
                     <li className="flex items-start gap-2">
@@ -675,7 +675,7 @@ export default function DocsPage() {
                 />
                 <FAQItem
                   question="Why do I need my own Monzo credentials?"
-                  answer="bare.money is open source. Instead of sharing one API key, each user creates their own OAuth app. This is more secure — you have full control and can revoke access anytime from developers.monzo.com."
+                  answer="For security, bare.money doesn't use a shared API key. Each user creates their own OAuth app. This is more secure — you have full control and can revoke access anytime from developers.monzo.com."
                 />
                 <FAQItem
                   question="Can bare.money move my money?"

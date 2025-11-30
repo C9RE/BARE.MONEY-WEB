@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     default: 'bare.money - Know What You Can Actually Spend | Monzo Budgeting UK',
     template: '%s | bare.money',
   },
-  description: 'Free budgeting app for Monzo users in the UK. See your safe-to-spend amount — your balance minus upcoming bills. AI coaching from Juno. Read-only access, open source.',
-  keywords: ['monzo budgeting', 'safe to spend', 'uk budgeting app', 'monzo app', 'money management uk', 'ai financial coach', 'juno ai', 'open source budgeting', 'personal finance uk', 'budget tracker monzo'],
+  description: 'Free budgeting app for Monzo users in the UK. See your safe-to-spend amount — your balance minus upcoming bills. AI coaching from Juno. Read-only access.',
+  keywords: ['monzo budgeting', 'safe to spend', 'uk budgeting app', 'monzo app', 'money management uk', 'ai financial coach', 'juno ai', 'personal finance uk', 'budget tracker monzo'],
   authors: [{ name: 'bare.money' }],
   creator: 'bare.money',
   publisher: 'bare.money',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'bare.money - Know What You Can Actually Spend',
-    description: 'Free Monzo budgeting for UK. Your balance minus your bills = safe-to-spend. AI coaching from Juno. Read-only, open source.',
+    description: 'Free Monzo budgeting for UK. Your balance minus your bills = safe-to-spend. AI coaching from Juno. Read-only access.',
     url: siteUrl,
     siteName: 'bare.money',
     locale: 'en_GB',
@@ -94,10 +94,7 @@ const jsonLd = {
       '@id': `${siteUrl}/#organization`,
       name: 'bare.money',
       url: siteUrl,
-      description: 'Free, open-source Monzo budgeting app for UK. Calculate your safe-to-spend and get AI coaching from Juno.',
-      sameAs: [
-        'https://github.com/C9RE/BARE.MONEY',
-      ],
+      description: 'Free Monzo budgeting app for UK. Calculate your safe-to-spend and get AI coaching from Juno.',
     },
     {
       '@type': 'SoftwareApplication',
