@@ -185,10 +185,9 @@ export default function PrivacyPage() {
             <p className="mb-2">
               Questions about privacy? Reach out:
             </p>
-            <ul className="list-disc list-inside space-y-1">
-              <li>Email: <a href="mailto:privacy@bare.money" className="text-bare-accent hover:underline">privacy@bare.money</a></li>
-              <li>GitHub: <a href="https://github.com/C9RE/BARE.MONEY" target="_blank" rel="noopener noreferrer" className="text-bare-accent hover:underline">github.com/C9RE/BARE.MONEY</a></li>
-            </ul>
+            <p>
+              Email: <a href="mailto:privacy@bare.money" className="text-bare-accent hover:underline">privacy@bare.money</a>
+            </p>
           </section>
 
           {/* Changes */}
