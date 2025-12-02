@@ -18,7 +18,7 @@ interface ChangelogEntry {
 const changelog: ChangelogEntry[] = [
   {
     version: '1.0.0',
-    date: '2 December 2024',
+    date: '2 December 2025',
     summary: 'Initial public release with full feature set',
     features: [
       'Safe-to-Spend dashboard with real-time balance tracking',
