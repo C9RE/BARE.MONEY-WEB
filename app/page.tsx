@@ -320,6 +320,12 @@ export default function LandingPage() {
               <Link href="/docs" className="hover:text-bare-text transition-colors">
                 Docs
               </Link>
+              <Link href="/changelog" className="hover:text-bare-text transition-colors">
+                Changelog
+              </Link>
+              <Link href="/status" className="hover:text-bare-text transition-colors">
+                Status
+              </Link>
             </div>
           </div>
         </footer>
@@ -720,6 +726,12 @@ export default function LandingPage() {
                 </Link>
                 <Link href="/docs" className="hover:text-bare-text transition-colors">
                   Docs
+                </Link>
+                <Link href="/changelog" className="hover:text-bare-text transition-colors">
+                  Changelog
+                </Link>
+                <Link href="/status" className="hover:text-bare-text transition-colors">
+                  Status
                 </Link>
               </div>
             </div>
