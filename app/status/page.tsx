@@ -152,7 +152,7 @@ function IncidentCard({ incident }: { incident: Incident }) {
 }
 
 const HEALTH_ENDPOINT = 'https://juno.bare.money/api/health'
-const REFRESH_INTERVAL = 30000 // 30 seconds
+const REFRESH_INTERVAL = 300000 // 5 minutes
 
 export default function StatusPage() {
   const [lastChecked, setLastChecked] = useState<Date | null>(null)
@@ -268,7 +268,7 @@ export default function StatusPage() {
         >
           <h1 className="font-display text-4xl font-bold mb-4">System Status</h1>
           <p className="text-bare-muted mb-8">
-            Live status of bare.money services. Auto-refreshes every 30 seconds.
+            Live status of bare.money services. Auto-refreshes every 5 minutes.
           </p>
         </motion.div>
 
