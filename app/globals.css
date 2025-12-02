@@ -53,7 +53,7 @@ body {
 
 /* Card styles */
 .card {
-  @apply bg-white rounded-2xl p-4 border border-bare-card-border shadow-card;
+  @apply bg-bare-card rounded-2xl p-4 border border-bare-card-border shadow-card transition-colors duration-300;
 }
 
 /* Button styles */
