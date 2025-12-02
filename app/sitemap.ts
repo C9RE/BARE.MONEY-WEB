@@ -32,13 +32,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/changelog`,
-      lastModified: '2024-12-02',
+      lastModified: '2025-12-02',
       changeFrequency: 'weekly',
       priority: 0.5,
     },
     {
       url: `${baseUrl}/status`,
-      lastModified: '2024-12-02',
+      lastModified: '2025-12-02',
       changeFrequency: 'daily',
       priority: 0.4,
     },
