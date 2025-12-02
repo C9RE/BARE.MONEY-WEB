@@ -1,17 +1,19 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { CheckCircle, AlertCircle, XCircle, Activity, Globe, Server, Key, Webhook, Clock, RefreshCw } from 'lucide-react'
+import { CheckCircle, AlertCircle, XCircle, Activity, Globe, Server, Key, Webhook, Clock, RefreshCw, Loader2 } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
-type Status = 'operational' | 'degraded' | 'outage' | 'maintenance'
+type Status = 'operational' | 'degraded' | 'outage' | 'maintenance' | 'checking'
 
-interface Component {
+interface ComponentStatus {
   name: string
   description: string
   status: Status
   icon: React.ReactNode
+  key: string
 }
 
 interface Incident {
@@ -26,47 +28,19 @@ interface Incident {
   }[]
 }
 
-const components: Component[] = [
-  {
-    name: 'Web App',
-    description: 'juno.bare.money dashboard and UI',
-    status: 'operational',
-    icon: <Globe className="w-5 h-5" />,
-  },
-  {
-    name: 'API',
-    description: 'Core API and data processing',
-    status: 'operational',
-    icon: <Server className="w-5 h-5" />,
-  },
-  {
-    name: 'Authentication',
-    description: 'Magic links, passkeys, and sessions',
-    status: 'operational',
-    icon: <Key className="w-5 h-5" />,
-  },
-  {
-    name: 'Monzo Webhooks',
-    description: 'Real-time transaction updates',
-    status: 'operational',
-    icon: <Webhook className="w-5 h-5" />,
-  },
-]
+interface HealthResponse {
+  status: 'ok' | 'degraded' | 'error'
+  services: {
+    api: 'operational' | 'degraded' | 'outage'
+    database: 'operational' | 'degraded' | 'outage'
+    auth: 'operational' | 'degraded' | 'outage'
+    webhooks: 'operational' | 'degraded' | 'outage'
+  }
+  timestamp: string
+}
 
 const incidents: Incident[] = [
   // Add incidents here when they occur
-  // Example:
-  // {
-  //   id: '1',
-  //   title: 'Webhook delays',
-  //   status: 'resolved',
-  //   date: '28 November 2024',
-  //   updates: [
-  //     { time: '15:30', message: 'Issue resolved. All webhooks processing normally.', status: 'resolved' },
-  //     { time: '14:45', message: 'Fix deployed. Monitoring.', status: 'monitoring' },
-  //     { time: '14:00', message: 'Investigating delayed webhook processing.', status: 'investigating' },
-  //   ],
-  // },
 ]
 
 function getStatusConfig(status: Status) {
@@ -103,27 +77,26 @@ function getStatusConfig(status: Status) {
         textClass: 'text-bare-accent',
         borderClass: 'border-bare-accent/20',
       }
+    case 'checking':
+      return {
+        label: 'Checking...',
+        icon: <Loader2 className="w-5 h-5 animate-spin" />,
+        bgClass: 'bg-bare-muted/10',
+        textClass: 'text-bare-muted',
+        borderClass: 'border-bare-muted/20',
+      }
   }
 }
 
-function getOverallStatus(components: Component[]): Status {
+function getOverallStatus(components: ComponentStatus[]): Status {
+  if (components.some(c => c.status === 'checking')) return 'checking'
   if (components.some(c => c.status === 'outage')) return 'outage'
   if (components.some(c => c.status === 'degraded')) return 'degraded'
   if (components.some(c => c.status === 'maintenance')) return 'maintenance'
   return 'operational'
 }
 
-function StatusBadge({ status }: { status: Status }) {
-  const config = getStatusConfig(status)
-  return (
-    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${config.bgClass} ${config.textClass}`}>
-      {config.icon}
-      {config.label}
-    </span>
-  )
-}
-
-function ComponentCard({ component }: { component: Component }) {
+function ComponentCard({ component }: { component: ComponentStatus }) {
   const config = getStatusConfig(component.status)
   return (
     <div className={`card flex items-center justify-between ${config.borderClass}`}>
@@ -178,7 +151,103 @@ function IncidentCard({ incident }: { incident: Incident }) {
   )
 }
 
+const HEALTH_ENDPOINT = 'https://juno.bare.money/api/health'
+const REFRESH_INTERVAL = 30000 // 30 seconds
+
 export default function StatusPage() {
+  const [lastChecked, setLastChecked] = useState<Date | null>(null)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [components, setComponents] = useState<ComponentStatus[]>([
+    {
+      name: 'Web App',
+      description: 'juno.bare.money dashboard and UI',
+      status: 'checking',
+      icon: <Globe className="w-5 h-5" />,
+      key: 'app',
+    },
+    {
+      name: 'API',
+      description: 'Core API and data processing',
+      status: 'checking',
+      icon: <Server className="w-5 h-5" />,
+      key: 'api',
+    },
+    {
+      name: 'Authentication',
+      description: 'Magic links, passkeys, and sessions',
+      status: 'checking',
+      icon: <Key className="w-5 h-5" />,
+      key: 'auth',
+    },
+    {
+      name: 'Monzo Webhooks',
+      description: 'Real-time transaction updates',
+      status: 'checking',
+      icon: <Webhook className="w-5 h-5" />,
+      key: 'webhooks',
+    },
+  ])
+
+  const checkHealth = useCallback(async () => {
+    setIsRefreshing(true)
+
+    try {
+      const response = await fetch(HEALTH_ENDPOINT, {
+        method: 'GET',
+        cache: 'no-store',
+      })
+
+      if (!response.ok) {
+        throw new Error('Health check failed')
+      }
+
+      const data: HealthResponse = await response.json()
+
+      setComponents(prev => prev.map(component => {
+        let newStatus: Status = 'operational'
+
+        switch (component.key) {
+          case 'app':
+            // If we got a response, the app is up
+            newStatus = data.status === 'ok' ? 'operational' : data.status === 'degraded' ? 'degraded' : 'outage'
+            break
+          case 'api':
+            newStatus = data.services.api
+            break
+          case 'auth':
+            newStatus = data.services.auth
+            break
+          case 'webhooks':
+            newStatus = data.services.webhooks
+            break
+        }
+
+        return { ...component, status: newStatus }
+      }))
+
+      setLastChecked(new Date())
+    } catch {
+      // If fetch fails, mark everything as outage
+      setComponents(prev => prev.map(component => ({
+        ...component,
+        status: 'outage' as Status,
+      })))
+      setLastChecked(new Date())
+    } finally {
+      setIsRefreshing(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    // Initial check
+    checkHealth()
+
+    // Set up interval for periodic checks
+    const interval = setInterval(checkHealth, REFRESH_INTERVAL)
+
+    return () => clearInterval(interval)
+  }, [checkHealth])
+
   const overallStatus = getOverallStatus(components)
   const overallConfig = getStatusConfig(overallStatus)
 
@@ -199,7 +268,7 @@ export default function StatusPage() {
         >
           <h1 className="font-display text-4xl font-bold mb-4">System Status</h1>
           <p className="text-bare-muted mb-8">
-            Current status of bare.money services. Updated in real-time.
+            Live status of bare.money services. Auto-refreshes every 30 seconds.
           </p>
         </motion.div>
 
@@ -210,27 +279,41 @@ export default function StatusPage() {
           transition={{ delay: 0.1, duration: 0.5 }}
           className={`card ${overallConfig.bgClass} ${overallConfig.borderClass} mb-8`}
         >
-          <div className="flex items-center gap-3">
-            <div className={`w-12 h-12 rounded-xl bg-white/50 flex items-center justify-center ${overallConfig.textClass}`}>
-              <Activity className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                {overallConfig.icon}
-                <span className={`font-semibold ${overallConfig.textClass}`}>
-                  {overallStatus === 'operational'
-                    ? 'All Systems Operational'
-                    : overallStatus === 'degraded'
-                    ? 'Some Systems Degraded'
-                    : overallStatus === 'outage'
-                    ? 'System Outage'
-                    : 'Scheduled Maintenance'}
-                </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`w-12 h-12 rounded-xl bg-white/50 flex items-center justify-center ${overallConfig.textClass}`}>
+                <Activity className="w-6 h-6" />
               </div>
-              <p className="text-sm text-bare-muted mt-1">
-                Last checked: {new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
-              </p>
+              <div>
+                <div className="flex items-center gap-2">
+                  {overallConfig.icon}
+                  <span className={`font-semibold ${overallConfig.textClass}`}>
+                    {overallStatus === 'checking'
+                      ? 'Checking Systems...'
+                      : overallStatus === 'operational'
+                      ? 'All Systems Operational'
+                      : overallStatus === 'degraded'
+                      ? 'Some Systems Degraded'
+                      : overallStatus === 'outage'
+                      ? 'System Outage'
+                      : 'Scheduled Maintenance'}
+                  </span>
+                </div>
+                <p className="text-sm text-bare-muted mt-1">
+                  {lastChecked
+                    ? `Last checked: ${lastChecked.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`
+                    : 'Checking...'}
+                </p>
+              </div>
             </div>
+            <button
+              onClick={checkHealth}
+              disabled={isRefreshing}
+              className="p-2 rounded-lg hover:bg-white/50 transition-colors disabled:opacity-50"
+              title="Refresh status"
+            >
+              <RefreshCw className={`w-5 h-5 text-bare-muted ${isRefreshing ? 'animate-spin' : ''}`} />
+            </button>
           </div>
         </motion.section>
 
@@ -279,7 +362,7 @@ export default function StatusPage() {
           )}
         </motion.section>
 
-        {/* Uptime Note */}
+        {/* About */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -288,8 +371,8 @@ export default function StatusPage() {
         >
           <h2 className="font-display text-lg font-semibold text-bare-text mb-2">About This Page</h2>
           <p className="text-sm text-bare-muted">
-            This status page shows the current state of bare.money services. Component statuses are updated manually when issues arise.
-            For real-time alerts, follow us on social media or check back here during any service disruptions.
+            This page fetches live status from juno.bare.money every 30 seconds.
+            If you&apos;re experiencing issues not shown here, try refreshing or contact support.
           </p>
         </motion.section>
 
