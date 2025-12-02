@@ -1,13 +1,19 @@
+'use client'
+
 import Link from 'next/link'
 import { Shield, Lock, Eye, Trash2, Server, Brain } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-bare-bg px-6 py-12">
+    <main className="min-h-screen bg-bare-bg px-6 py-12 transition-colors duration-300">
       <div className="max-w-2xl mx-auto">
-        <Link href="/" className="text-bare-accent hover:text-bare-accent-hover mb-8 inline-block">
-          ← Back
-        </Link>
+        <div className="flex items-center justify-between mb-8">
+          <Link href="/" className="text-bare-accent hover:text-bare-accent-hover">
+            ← Back
+          </Link>
+          <ThemeToggle />
+        </div>
 
         <h1 className="font-display text-4xl font-bold mb-4">Privacy Policy</h1>
         <p className="text-bare-muted mb-8">

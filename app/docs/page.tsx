@@ -22,6 +22,7 @@ import {
   Calculator,
   RefreshCw
 } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 const sections = [
   { id: 'getting-started', title: 'Getting Started', icon: Wallet },
@@ -107,9 +108,9 @@ export default function DocsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-bare-bg">
+    <div className="min-h-screen bg-bare-bg transition-colors duration-300">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-bare-card-border">
+      <header className="sticky top-0 z-50 bg-bare-card/95 backdrop-blur-lg border-b border-bare-card-border transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link href="/" className="text-bare-muted hover:text-bare-text transition-colors">
@@ -121,12 +122,15 @@ export default function DocsPage() {
               <span className="text-bare-muted font-normal ml-2">/ docs</span>
             </h1>
           </div>
-          <a
-            href="https://juno.bare.money"
-            className="btn-primary text-sm py-2 px-4"
-          >
-            Open App
-          </a>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="https://juno.bare.money"
+              className="btn-primary text-sm py-2 px-4"
+            >
+              Open App
+            </a>
+          </div>
         </div>
       </header>
 
@@ -380,7 +384,7 @@ export default function DocsPage() {
                     <Calculator className="text-bare-accent" size={20} />
                     The Formula
                   </h3>
-                  <div className="bg-white rounded-xl p-6 border border-bare-card-border mb-4">
+                  <div className="bg-bare-card rounded-xl p-6 border border-bare-card-border mb-4 transition-colors duration-300">
                     <div className="font-mono text-center space-y-2">
                       <p className="text-2xl font-bold text-bare-text">Safe-to-Spend</p>
                       <p className="text-bare-muted">=</p>

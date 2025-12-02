@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Wallet, Brain, Receipt, Shield, Smartphone, Zap, Star, ChevronDown, Lock, Key } from 'lucide-react'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default function LandingPage() {
   return (
@@ -11,18 +12,21 @@ export default function LandingPage() {
       {/* ========== MOBILE LAYOUT ========== */}
       <main className="lg:hidden min-h-screen bg-bare-bg">
         {/* Mobile Header */}
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-bare-card-border px-6 py-4">
+        <header className="sticky top-0 z-50 bg-bare-card/95 backdrop-blur-lg border-b border-bare-card-border px-6 py-4 transition-colors duration-300">
           <div className="flex items-center justify-between">
             <h1 className="font-display text-2xl font-bold">
               <span className="gradient-text">bare</span>
               <span className="text-bare-muted">.money</span>
             </h1>
-            <a
-              href="https://juno.bare.money"
-              className="btn-primary text-sm py-2 px-4"
-            >
-              Get Started Free
-            </a>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <a
+                href="https://juno.bare.money"
+                className="btn-primary text-sm py-2 px-4"
+              >
+                Get Started Free
+              </a>
+            </div>
           </div>
         </header>
 
@@ -78,7 +82,7 @@ export default function LandingPage() {
         </section>
 
         {/* Trust Section */}
-        <section className="px-6 py-8 bg-white border-y border-bare-card-border">
+        <section className="px-6 py-8 bg-bare-card border-y border-bare-card-border transition-colors duration-300">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +202,7 @@ export default function LandingPage() {
         </section>
 
         {/* How it Works */}
-        <section className="px-6 py-12 bg-white">
+        <section className="px-6 py-12 bg-bare-card transition-colors duration-300">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -297,7 +301,7 @@ export default function LandingPage() {
         </section>
 
         {/* Footer */}
-        <footer className="px-6 py-8 bg-white border-t border-bare-card-border">
+        <footer className="px-6 py-8 bg-bare-card border-t border-bare-card-border transition-colors duration-300">
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-2">
               <h1 className="font-display text-lg font-bold">
@@ -337,6 +341,7 @@ export default function LandingPage() {
               >
                 Docs
               </Link>
+              <ThemeToggle />
               <a
                 href="https://juno.bare.money"
                 className="text-bare-accent font-semibold hover:text-bare-accent-hover transition-colors"
@@ -401,9 +406,9 @@ export default function LandingPage() {
               >
                 <div className="relative">
                   {/* Phone frame */}
-                  <div className="w-72 h-[580px] bg-bare-card rounded-[3rem] shadow-card border-8 border-bare-text/10 overflow-hidden">
+                  <div className="w-72 h-[580px] bg-bare-card rounded-[3rem] shadow-card border-8 border-bare-card-border overflow-hidden transition-colors duration-300">
                     {/* Screen content mockup */}
-                    <div className="h-full bg-bare-bg p-6 pt-12">
+                    <div className="h-full bg-bare-bg p-6 pt-12 transition-colors duration-300">
                       {/* Status bar mockup */}
                       <div className="flex justify-between text-xs text-bare-muted mb-8">
                         <span>9:41</span>
@@ -457,7 +462,7 @@ export default function LandingPage() {
         </section>
 
         {/* Trust Section */}
-        <section className="px-12 py-6 bg-white border-y border-bare-card-border">
+        <section className="px-12 py-6 bg-bare-card border-y border-bare-card-border transition-colors duration-300">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -589,7 +594,7 @@ export default function LandingPage() {
         </section>
 
         {/* How it works */}
-        <section className="px-12 py-24 bg-white">
+        <section className="px-12 py-24 bg-bare-card transition-colors duration-300">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -695,7 +700,7 @@ export default function LandingPage() {
         </section>
 
         {/* Footer */}
-        <footer className="px-12 py-12 bg-white border-t border-bare-card-border">
+        <footer className="px-12 py-12 bg-bare-card border-t border-bare-card-border transition-colors duration-300">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">

@@ -4,14 +4,43 @@
 
 :root {
   --font-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Light mode colors (default) */
+  --bare-bg: #F8F9FA;
+  --bare-bg-soft: #FFFFFF;
+  --bare-card: #FFFFFF;
+  --bare-card-border: #E8ECF0;
+  --bare-text: #1A1A2E;
+  --bare-muted: #6B7280;
+  --bare-accent-soft: #EDE9FE;
+
+  /* Light mode shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  /* Dark mode colors */
+  --bare-bg: #0F0F1A;
+  --bare-bg-soft: #1A1A2E;
+  --bare-card: #1A1A2E;
+  --bare-card-border: #2D2D44;
+  --bare-text: #F8F9FA;
+  --bare-muted: #9CA3AF;
+  --bare-accent-soft: #2D2544;
+
+  /* Dark mode shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 body {
   font-family: var(--font-display);
-  background-color: #F8F9FA;
-  color: #1A1A2E;
+  background-color: var(--bare-bg);
+  color: var(--bare-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Gradient text for branding */
