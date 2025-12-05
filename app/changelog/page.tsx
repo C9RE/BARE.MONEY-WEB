@@ -17,6 +17,26 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    version: '1.1.0',
+    date: '5 December 2025',
+    summary: 'Navigation refresh with improved UI polish and popup fixes',
+    features: [
+      'Sliding nav pill animation for active state indicator',
+      'React Portal implementation for popups',
+    ],
+    improvements: [
+      'Bolder nav icons for better visibility',
+      'Compact nav design with refined spacing',
+      'Reduced blur effects for cleaner appearance',
+      'Simplified profile popup styling',
+      'Updated settings page version display to Juno v1.1.0',
+    ],
+    fixes: [
+      'Fixed popups rendering behind navigation bar',
+      'Standardised popup styling across the app',
+    ],
+  },
+  {
     version: '1.0.0',
     date: '2 December 2025',
     summary: 'Initial public release with full feature set',
