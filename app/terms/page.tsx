@@ -17,7 +17,7 @@ export default function TermsPage() {
 
         <h1 className="font-display text-4xl font-bold mb-4">Terms of Service</h1>
         <p className="text-bare-muted mb-8">
-          <strong className="text-bare-text">Last updated:</strong> November 2024
+          <strong className="text-bare-text">Last updated:</strong> December 2025
         </p>
 
         <div className="prose prose-bare space-y-6 text-bare-muted">
@@ -196,10 +196,9 @@ export default function TermsPage() {
             <p className="mb-2">
               Questions about these terms? Reach out:
             </p>
-            <ul className="list-disc list-inside space-y-1">
-              <li>Email: <a href="mailto:legal@bare.money" className="text-bare-accent hover:underline">legal@bare.money</a></li>
-              <li>GitHub: <a href="https://github.com/C9RE/BARE.MONEY" target="_blank" rel="noopener noreferrer" className="text-bare-accent hover:underline">github.com/C9RE/BARE.MONEY</a></li>
-            </ul>
+            <p>
+              Email: <a href="mailto:hello@bare.money" className="text-bare-accent hover:underline">hello@bare.money</a>
+            </p>
           </section>
         </div>
       </div>
