@@ -17,7 +17,7 @@ export default function PrivacyPage() {
 
         <h1 className="font-display text-4xl font-bold mb-4">Privacy Policy</h1>
         <p className="text-bare-muted mb-8">
-          <strong className="text-bare-text">Last updated:</strong> November 2024
+          <strong className="text-bare-text">Last updated:</strong> December 2025
         </p>
 
         <div className="prose prose-bare space-y-6 text-bare-muted">
@@ -193,7 +193,7 @@ export default function PrivacyPage() {
               Questions about privacy? Reach out:
             </p>
             <p>
-              Email: <a href="mailto:privacy@bare.money" className="text-bare-accent hover:underline">privacy@bare.money</a>
+              Email: <a href="mailto:hello@bare.money" className="text-bare-accent hover:underline">hello@bare.money</a>
             </p>
           </section>
 

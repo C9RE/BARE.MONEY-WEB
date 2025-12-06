@@ -122,13 +122,13 @@ export default function DocsPage() {
               <span className="text-bare-muted font-normal ml-2">/ docs</span>
             </h1>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <ThemeToggle />
             <a
               href="https://juno.bare.money"
-              className="btn-primary text-sm py-2 px-4"
+              className="text-bare-accent hover:text-bare-accent-hover text-sm font-medium"
             >
-              Open App
+              Open App →
             </a>
           </div>
         </div>

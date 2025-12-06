@@ -371,8 +371,8 @@ export default function StatusPage() {
         >
           <h2 className="font-display text-lg font-semibold text-bare-text mb-2">About This Page</h2>
           <p className="text-sm text-bare-muted">
-            This page fetches live status from juno.bare.money every 30 seconds.
-            If you&apos;re experiencing issues not shown here, try refreshing or contact support.
+            This page fetches live status from juno.bare.money every 5 minutes.
+            If you&apos;re experiencing issues not shown here, try refreshing or email <a href="mailto:hello@bare.money" className="text-bare-accent hover:underline">hello@bare.money</a>.
           </p>
         </motion.section>
 
