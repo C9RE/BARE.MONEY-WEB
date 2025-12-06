@@ -1,5 +1,24 @@
 # Claude Instructions for bare.money (Marketing Website)
 
+## Branding
+
+**Brand name:** bare.money (always lowercase)
+
+- **Correct:** bare.money, "the bare.money app"
+- **Incorrect:** Bare Money, Bare.Money, BARE.MONEY, Bare.money
+
+**Logo treatment:**
+```jsx
+<span className="gradient-text">bare</span>
+<span className="text-bare-muted">.money</span>
+```
+
+**Mascot:** Purple bear (bear/bare wordplay)
+
+**App name:** Juno (the AI coach and the app itself live at juno.bare.money)
+
+**Contact:** hello@bare.money
+
 ## Project Overview
 
 This is the **marketing website** for bare.money. It lives at `bare.money` and promotes the Juno budgeting app at `juno.bare.money`.
@@ -193,7 +212,7 @@ import { Wallet, Brain, Receipt } from 'lucide-react'
 
 ### Footer
 - Logo + tagline
-- Links: Privacy, Terms, GitHub
+- Links: Privacy, Terms, Docs, Changelog, Status
 
 ## Docs Page Structure
 
