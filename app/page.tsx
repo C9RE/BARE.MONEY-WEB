@@ -14,10 +14,17 @@ export default function LandingPage() {
         {/* Mobile Header */}
         <header className="sticky top-0 z-50 bg-bare-card/95 backdrop-blur-lg border-b border-bare-card-border px-6 py-4 transition-colors duration-300">
           <div className="flex items-center justify-between">
-            <h1 className="font-display text-2xl font-bold">
-              <span className="gradient-text">bare</span>
-              <span className="text-bare-muted">.money</span>
-            </h1>
+            <div className="flex items-center gap-2">
+              <img
+                src="/baremoney.png"
+                alt="bare.money"
+                className="w-8 h-8 rounded-[22%]"
+              />
+              <h1 className="font-display text-2xl font-bold">
+                <span className="gradient-text">bare</span>
+                <span className="text-bare-muted">.money</span>
+              </h1>
+            </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <a
@@ -58,9 +65,11 @@ export default function LandingPage() {
                 <p className="text-bare-muted text-sm mt-1">until Thursday</p>
               </div>
               <div className="flex items-start gap-3 pt-4 border-t border-bare-card-border">
-                <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
-                  <Brain className="w-4 h-4 text-white" />
-                </div>
+                <img
+                  src="/baremoney.png"
+                  alt="Juno"
+                  className="w-8 h-8 rounded-[22%] flex-shrink-0"
+                />
                 <div className="text-left">
                   <p className="text-sm font-medium text-bare-safe">Juno</p>
                   <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
@@ -285,6 +294,11 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
+            <img
+              src="/baremoney.png"
+              alt="bare.money"
+              className="w-16 h-16 rounded-[22%] mx-auto mb-6"
+            />
             <h3 className="font-display text-3xl font-bold text-white mb-4">
               Ready to see the truth?
             </h3>
@@ -336,10 +350,17 @@ export default function LandingPage() {
         {/* Navigation */}
         <nav className="w-full px-12 py-6">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <h1 className="font-display text-3xl font-bold">
-              <span className="gradient-text">bare</span>
-              <span className="text-bare-muted">.money</span>
-            </h1>
+            <div className="flex items-center gap-3">
+              <img
+                src="/baremoney.png"
+                alt="bare.money"
+                className="w-10 h-10 rounded-[22%]"
+              />
+              <h1 className="font-display text-3xl font-bold">
+                <span className="gradient-text">bare</span>
+                <span className="text-bare-muted">.money</span>
+              </h1>
+            </div>
             <div className="flex items-center gap-6">
               <Link
                 href="/docs"
@@ -431,9 +452,11 @@ export default function LandingPage() {
                       {/* Juno mockup */}
                       <div className="mb-6">
                         <div className="flex items-start gap-3">
-                          <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
-                            <Brain className="w-4 h-4 text-white" />
-                          </div>
+                          <img
+                            src="/baremoney.png"
+                            alt="Juno"
+                            className="w-8 h-8 rounded-[22%] flex-shrink-0"
+                          />
                           <div>
                             <p className="text-sm font-medium text-bare-safe">Juno</p>
                             <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
@@ -690,6 +713,11 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto text-center"
           >
+            <img
+              src="/baremoney.png"
+              alt="bare.money"
+              className="w-20 h-20 rounded-[22%] mx-auto mb-8"
+            />
             <h3 className="font-display text-4xl font-bold text-white mb-4">
               Ready to see the truth?
             </h3>
