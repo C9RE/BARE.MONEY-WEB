@@ -20,7 +20,11 @@ import {
   Check,
   AlertTriangle,
   Calculator,
-  RefreshCw
+  RefreshCw,
+  Sparkles,
+  MessageSquare,
+  Filter,
+  Clock
 } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
@@ -195,10 +199,11 @@ export default function DocsPage() {
                   </p>
 
                   <div className="bg-bare-bg rounded-xl p-4 mb-6">
-                    <p className="text-sm text-bare-muted mb-2">The simple formula:</p>
+                    <p className="text-sm text-bare-muted mb-2">The core concept:</p>
                     <p className="font-mono text-bare-text font-medium">
-                      Safe-to-Spend = Balance − Bills Before Payday
+                      Safe-to-Spend = Lowest point in 60-day cash flow simulation
                     </p>
+                    <p className="text-xs text-bare-muted mt-2">We simulate your bills and income for 60 days to find when your balance will be lowest.</p>
                   </div>
 
                   <div className="space-y-3">
@@ -382,22 +387,57 @@ export default function DocsPage() {
                 <div className="card bg-bare-bg border-none">
                   <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
                     <Calculator className="text-bare-accent" size={20} />
-                    The Formula
+                    How It Works: 60-Day Cash Flow Simulation
                   </h3>
-                  <div className="bg-bare-card rounded-xl p-6 border border-bare-card-border mb-4 transition-colors duration-300">
-                    <div className="font-mono text-center space-y-2">
-                      <p className="text-2xl font-bold text-bare-text">Safe-to-Spend</p>
-                      <p className="text-bare-muted">=</p>
-                      <p className="text-xl text-bare-text">Current Balance</p>
-                      <p className="text-bare-muted">−</p>
-                      <p className="text-xl text-bare-text">Bills Due Before Payday</p>
-                      <p className="text-bare-muted">−</p>
-                      <p className="text-xl text-bare-text">Shortfall Buffer*</p>
+                  <p className="text-bare-muted mb-4">
+                    Rather than a simple subtraction, bare.money runs a <strong>60-day cash flow simulation</strong> to find your true safe-to-spend amount:
+                  </p>
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-bare-accent text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">1</div>
+                      <div>
+                        <p className="font-medium text-bare-text">Build a timeline</p>
+                        <p className="text-sm text-bare-muted">All unpaid bills (2 cycles of monthly bills) and all expected income for the next 60 days</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-bare-accent text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">2</div>
+                      <div>
+                        <p className="font-medium text-bare-text">Sort by date</p>
+                        <p className="text-sm text-bare-muted">Income events are processed before bills on the same day</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-bare-accent text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">3</div>
+                      <div>
+                        <p className="font-medium text-bare-text">Simulate cash flow</p>
+                        <p className="text-sm text-bare-muted">Walk through each event (bills subtract, income adds) and track the <strong>lowest balance point</strong> reached</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-bare-accent text-white flex items-center justify-center flex-shrink-0 text-xs font-bold">4</div>
+                      <div>
+                        <p className="font-medium text-bare-text">Calculate safe-to-spend</p>
+                        <p className="text-sm text-bare-muted">Divide by weeks until that lowest point to get your weekly safe-to-spend</p>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-sm text-bare-muted">
-                    *If bills due after payday exceed your expected income, we reserve the difference now.
-                  </p>
+                  <div className="bg-bare-card rounded-xl p-6 border border-bare-card-border mb-4 transition-colors duration-300">
+                    <div className="font-mono text-center space-y-2">
+                      <p className="text-xl font-bold text-bare-text">Safe-to-Spend</p>
+                      <p className="text-bare-muted">=</p>
+                      <p className="text-lg text-bare-text">Lowest Projected Balance</p>
+                      <p className="text-bare-muted">−</p>
+                      <p className="text-lg text-bare-text">Savings Buffer</p>
+                      <p className="text-bare-muted mt-4 text-sm">Weekly portion = Total ÷ Weeks until lowest point</p>
+                    </div>
+                  </div>
+                  <div className="bg-bare-accent-soft rounded-lg p-4 border border-bare-accent/20">
+                    <p className="text-sm text-bare-accent font-medium mb-1">Why 60 days?</p>
+                    <p className="text-sm text-bare-muted">
+                      Catches 2 cycles of every monthly bill, prevents surprises when bills cross the 30-day boundary, and ensures income events are properly factored in.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="card">
@@ -486,16 +526,17 @@ export default function DocsPage() {
                     Juno is your AI money coach powered by Anthropic&apos;s Claude. She analyses your spending patterns and gives you honest, contextual feedback — referencing actual merchants, amounts, and your current financial status.
                   </p>
                   <p className="text-bare-muted">
-                    You can chat with Juno about your finances or just check the dashboard for quick status updates that appear with a smooth typewriter effect.
+                    Juno appears at the top of your dashboard with a personalised insight that updates each time you open the app. Insights appear with a smooth typewriter animation in a speech bubble card.
                   </p>
                 </div>
 
                 <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+                    <Clock size={20} className="text-bare-accent" />
                     Smart Time-Based Greetings
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    Juno knows what time it is. She greets you appropriately based on your local time:
+                    Juno knows what time it is. She greets you appropriately based on your local device time:
                   </p>
                   <div className="space-y-2">
                     <div className="bg-bare-bg rounded-lg p-3">
@@ -507,14 +548,19 @@ export default function DocsPage() {
                       <p className="text-bare-text font-medium">&quot;Good afternoon, Sarah...&quot;</p>
                     </div>
                     <div className="bg-bare-bg rounded-lg p-3">
-                      <p className="text-sm text-bare-muted">Evening (5pm onwards)</p>
+                      <p className="text-sm text-bare-muted">Evening (5pm - 9pm)</p>
                       <p className="text-bare-text font-medium">&quot;Good evening, Sarah...&quot;</p>
+                    </div>
+                    <div className="bg-bare-bg rounded-lg p-3">
+                      <p className="text-sm text-bare-muted">Late night (9pm - 5am)</p>
+                      <p className="text-bare-text font-medium">&quot;Hey, Sarah...&quot;</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+                    <MessageSquare size={20} className="text-bare-accent" />
                     Contextual Insights
                   </h3>
                   <p className="text-bare-muted mb-4">
@@ -526,37 +572,38 @@ export default function DocsPage() {
                     </p>
                   </div>
                   <p className="text-bare-muted text-sm mt-4">
-                    Insights are 30-40 words — long enough to be useful, short enough to scan at a glance.
+                    Default insight length is around 40 words — long enough to be useful, short enough to scan at a glance. This can be configured between 10-200 words.
                   </p>
                 </div>
 
                 <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
-                    Dynamic Status Colours
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+                    <Sparkles size={20} className="text-bare-accent" />
+                    Visual Presentation
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    Juno&apos;s insight changes colour based on your financial status — so you can tell at a glance how you&apos;re doing:
+                    Juno&apos;s insights are designed to feel conversational and engaging:
                   </p>
                   <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-bare-safe/10 rounded-lg border border-bare-safe/20">
-                      <div className="w-3 h-3 rounded-full bg-bare-safe"></div>
+                    <div className="flex items-start gap-3">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
                       <div>
-                        <p className="font-medium text-bare-safe">Green — Healthy</p>
-                        <p className="text-sm text-bare-muted">More than £50 safe to spend</p>
+                        <p className="font-medium text-bare-text">Speech bubble card</p>
+                        <p className="text-sm text-bare-muted">Insights appear in a gradient-bordered card with status-coloured accents</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-bare-warning/10 rounded-lg border border-bare-warning/20">
-                      <div className="w-3 h-3 rounded-full bg-bare-warning"></div>
+                    <div className="flex items-start gap-3">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
                       <div>
-                        <p className="font-medium text-bare-warning">Amber — Caution</p>
-                        <p className="text-sm text-bare-muted">£20 to £50 safe to spend</p>
+                        <p className="font-medium text-bare-text">Animated avatar</p>
+                        <p className="text-sm text-bare-muted">Sparkles icon with subtle animation draws attention to the insight</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 p-3 bg-bare-danger/10 rounded-lg border border-bare-danger/20">
-                      <div className="w-3 h-3 rounded-full bg-bare-danger"></div>
+                    <div className="flex items-start gap-3">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
                       <div>
-                        <p className="font-medium text-bare-danger">Red — Alert</p>
-                        <p className="text-sm text-bare-muted">Less than £20 or shortfall detected</p>
+                        <p className="font-medium text-bare-text">Typewriter effect</p>
+                        <p className="text-sm text-bare-muted">Text appears character by character (25ms per character) with a blinking cursor</p>
                       </div>
                     </div>
                   </div>
@@ -564,27 +611,74 @@ export default function DocsPage() {
 
                 <div className="card">
                   <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
-                    What Juno sees
+                    Dynamic Status Colours
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    When you chat with Juno, we send <strong>summaries</strong> of your spending — not raw transaction data:
+                    Juno&apos;s insight changes colour based on your <strong>weekly</strong> safe-to-spend amount — so you can tell at a glance how you&apos;re doing:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 bg-bare-safe/10 rounded-lg border border-bare-safe/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-safe"></div>
+                      <div>
+                        <p className="font-medium text-bare-safe">Green — Healthy</p>
+                        <p className="text-sm text-bare-muted">More than £50 safe to spend this week</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-bare-warning/10 rounded-lg border border-bare-warning/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-warning"></div>
+                      <div>
+                        <p className="font-medium text-bare-warning">Amber — Caution</p>
+                        <p className="text-sm text-bare-muted">£20 to £50 safe to spend this week</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-bare-danger/10 rounded-lg border border-bare-danger/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-danger"></div>
+                      <div>
+                        <p className="font-medium text-bare-danger">Red — Alert</p>
+                        <p className="text-sm text-bare-muted">Less than £20 this week or shortfall detected</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-bare-muted text-sm mt-4">
+                    These thresholds apply to the weekly safe-to-spend amount, not your total balance or total safe-to-spend.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    What Juno Receives
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    To generate personalised insights, Juno receives the following context:
                   </p>
                   <ul className="space-y-2 text-bare-muted text-sm">
                     <li className="flex items-start gap-2">
                       <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
-                      <span>Spending by category (e.g., &quot;£120 on eating out this week&quot;)</span>
+                      <span>Your current balance and safe-to-spend amounts (total + weekly)</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
-                      <span>Your safe-to-spend amount</span>
+                      <span>Amount spent today and this week</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
-                      <span>Upcoming bill dates and amounts</span>
+                      <span>Up to 5 recent transactions (merchant name + amount)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
+                      <span>Bills due in the next 7 days (name + amount + days until due)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
+                      <span>Days until your next payday</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="text-bare-safe flex-shrink-0 mt-0.5" size={16} />
+                      <span>Your name (for personalised greetings)</span>
                     </li>
                   </ul>
                   <p className="text-bare-muted text-sm mt-4">
-                    We don&apos;t send raw merchant names or transaction descriptions to protect your privacy.
+                    This allows Juno to give specific, actionable advice like &quot;that Tesco trip was hefty&quot; rather than generic tips.
                   </p>
                 </div>
 
@@ -669,6 +763,38 @@ export default function DocsPage() {
                     </li>
                   </ul>
                 </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
+                    <Filter size={20} className="text-bare-accent" />
+                    Pass-Through Transactions
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Some transactions shouldn&apos;t count towards your spending — like rent you receive from a housemate and then pay out to your landlord.
+                  </p>
+                  <p className="text-bare-muted mb-4">
+                    You can mark specific merchants or keywords as <strong>pass-through</strong> to exclude them from spending calculations:
+                  </p>
+                  <ul className="space-y-2 text-bare-muted text-sm">
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Go to <strong>Settings → Pass-through Rules</strong></span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>Add merchant names or keywords to exclude</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
+                      <span>These transactions will still appear in your history but won&apos;t affect safe-to-spend</span>
+                    </li>
+                  </ul>
+                  <div className="bg-bare-bg rounded-lg p-4 mt-4">
+                    <p className="text-sm text-bare-muted">
+                      <strong>Example:</strong> If you pay rent via standing order that&apos;s also tracked as a bill, mark the outgoing payment as pass-through to avoid double-counting.
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -720,15 +846,16 @@ export default function DocsPage() {
                     Juno & Anthropic
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    Juno uses Anthropic&apos;s Claude AI. When you use Juno, we send:
+                    Juno uses Anthropic&apos;s Claude AI. To generate personalised insights, we send:
                   </p>
                   <ul className="list-disc list-inside space-y-1 text-bare-muted text-sm mb-4">
-                    <li>Transaction summaries (categories + amounts)</li>
-                    <li>Safe-to-spend amount</li>
-                    <li>Bill status</li>
+                    <li>Balance and safe-to-spend amounts</li>
+                    <li>Recent transactions (up to 5 merchants + amounts)</li>
+                    <li>Upcoming bills (next 7 days)</li>
+                    <li>Your first name and days until payday</li>
                   </ul>
                   <p className="text-bare-muted text-sm">
-                    We don&apos;t send raw merchant names or personally identifiable information.
+                    This enables contextual advice that references your actual spending. Data is processed by Anthropic under their privacy policy and is not used to train AI models.
                   </p>
                 </div>
 
@@ -775,7 +902,7 @@ export default function DocsPage() {
 
                 <div className="card">
                   <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
-                    Forcing a Fresh Sync
+                    Transaction Sync
                   </h3>
                   <p className="text-bare-muted mb-4">
                     Juno syncs your <strong>newest transactions first</strong>, then backfills older history. This ensures your recent activity always appears, even if you have a large transaction history.
@@ -783,7 +910,7 @@ export default function DocsPage() {
                   <ul className="space-y-2 text-bare-muted text-sm">
                     <li className="flex items-start gap-2">
                       <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
-                      <span>Initial sync can fetch up to ~1,000 transactions across multiple pages</span>
+                      <span><strong>90-day lookback</strong> on initial sync for comprehensive history</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={16} />
@@ -797,6 +924,15 @@ export default function DocsPage() {
                   <p className="text-bare-muted text-sm mt-4">
                     Webhooks are enabled automatically the next time you open the app. If transactions seem delayed, try closing and reopening Juno.
                   </p>
+                  <div className="bg-bare-bg rounded-lg p-4 mt-4">
+                    <p className="text-sm font-medium text-bare-text mb-2 flex items-center gap-2">
+                      <Filter size={16} className="text-bare-accent" />
+                      Automatic Filtering
+                    </p>
+                    <p className="text-sm text-bare-muted">
+                      The following are automatically excluded from spending calculations: pot transfers, pass-through transactions (like rent you receive and pay out), and account top-ups.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="card">
