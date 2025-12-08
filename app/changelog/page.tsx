@@ -17,6 +17,25 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    version: '1.2.0',
+    date: '8 December 2025',
+    summary: 'Enhanced Juno AI with smarter, more contextual insights',
+    features: [
+      'Time-based greetings (Good morning/afternoon/evening) based on your local time',
+      'Contextual insights that reference specific merchants and amounts',
+      'Dynamic status colours — green (healthy), amber (caution), red (alert)',
+      'Typewriter animation for Juno insights on the dashboard',
+      'Extended insight length from 15 to 30-40 words for more useful feedback',
+    ],
+    improvements: [
+      'Juno insights now include your name for a personal touch',
+      'Insights reference upcoming bills with days-until countdown',
+      'Personality prompts now load from database with smart defaults',
+      'Juno moved to top of dashboard for immediate visibility',
+      'Streamlined insight display — removed card styling for cleaner look',
+    ],
+  },
+  {
     version: '1.1.0',
     date: '5 December 2025',
     summary: 'Navigation refresh with improved UI polish and popup fixes',

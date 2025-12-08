@@ -62,8 +62,8 @@ export default function LandingPage() {
                   <Brain className="w-4 h-4 text-white" />
                 </div>
                 <div className="text-left">
-                  <p className="text-sm font-medium text-bare-text">Juno</p>
-                  <p className="text-sm text-bare-muted">Looking solid. Just watch the Deliveroo habit.</p>
+                  <p className="text-sm font-medium text-bare-safe">Juno</p>
+                  <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
                 </div>
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function LandingPage() {
             <MobileFeatureCard
               icon={<Brain className="w-5 h-5" />}
               title="Juno AI coach"
-              description="Your personal money coach who tells it like it is."
+              description="Time-aware insights that mention actual merchants and amounts. Choose brutal, balanced, or gentle."
             />
             <MobileFeatureCard
               icon={<Receipt className="w-5 h-5" />}
@@ -263,7 +263,7 @@ export default function LandingPage() {
             />
             <FAQItem
               question="Who is Juno?"
-              answer="Juno is your AI money coach powered by Claude. She analyses your spending and gives you straight talk - no sugarcoating."
+              answer="Juno is your AI money coach powered by Claude. She greets you based on time of day and gives contextual insights that mention specific merchants and amounts. Pick from three personality modes: brutal honesty, balanced wit, or gentle encouragement."
             />
             <FAQItem
               question="Why only Monzo?"
@@ -429,14 +429,14 @@ export default function LandingPage() {
                       </div>
 
                       {/* Juno mockup */}
-                      <div className="card mb-6">
+                      <div className="mb-6">
                         <div className="flex items-start gap-3">
                           <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
                             <Brain className="w-4 h-4 text-white" />
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-bare-text">Juno</p>
-                            <p className="text-sm text-bare-muted">Looking solid. Just watch the Deliveroo habit.</p>
+                            <p className="text-sm font-medium text-bare-safe">Juno</p>
+                            <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
                           </div>
                         </div>
                       </div>
@@ -527,7 +527,7 @@ export default function LandingPage() {
               <FeatureCard
                 icon={<Brain className="w-6 h-6" />}
                 title="Juno AI coach"
-                description="Your personal money coach who tells it like it is. No sugarcoating."
+                description="Time-aware insights that reference your actual spending. Choose your style: brutal, balanced, or gentle."
                 delay={0.2}
               />
               <FeatureCard
@@ -667,7 +667,7 @@ export default function LandingPage() {
               />
               <FAQItem
                 question="Who is Juno?"
-                answer="Juno is your AI money coach powered by Claude. She analyses your spending and gives you straight talk - no sugarcoating. You can set her personality from brutal to gentle in settings."
+                answer="Juno is your AI money coach powered by Claude. She greets you based on time of day and gives contextual insights that mention specific merchants and amounts. Pick from three personality modes: brutal honesty, balanced wit, or gentle encouragement."
               />
               <FAQItem
                 question="Why only Monzo?"

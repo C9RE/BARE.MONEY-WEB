@@ -483,11 +483,83 @@ export default function DocsPage() {
                     Meet Juno
                   </h3>
                   <p className="text-bare-muted mb-4">
-                    Juno is your AI money coach powered by Anthropic&apos;s Claude. She analyses your spending patterns and gives you honest feedback — no sugarcoating.
+                    Juno is your AI money coach powered by Anthropic&apos;s Claude. She analyses your spending patterns and gives you honest, contextual feedback — referencing actual merchants, amounts, and your current financial status.
                   </p>
                   <p className="text-bare-muted">
-                    You can chat with Juno about your finances or just check the dashboard for quick status updates.
+                    You can chat with Juno about your finances or just check the dashboard for quick status updates that appear with a smooth typewriter effect.
                   </p>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Smart Time-Based Greetings
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Juno knows what time it is. She greets you appropriately based on your local time:
+                  </p>
+                  <div className="space-y-2">
+                    <div className="bg-bare-bg rounded-lg p-3">
+                      <p className="text-sm text-bare-muted">Morning (5am - 12pm)</p>
+                      <p className="text-bare-text font-medium">&quot;Good morning, Sarah...&quot;</p>
+                    </div>
+                    <div className="bg-bare-bg rounded-lg p-3">
+                      <p className="text-sm text-bare-muted">Afternoon (12pm - 5pm)</p>
+                      <p className="text-bare-text font-medium">&quot;Good afternoon, Sarah...&quot;</p>
+                    </div>
+                    <div className="bg-bare-bg rounded-lg p-3">
+                      <p className="text-sm text-bare-muted">Evening (5pm onwards)</p>
+                      <p className="text-bare-text font-medium">&quot;Good evening, Sarah...&quot;</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Contextual Insights
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Unlike generic budgeting advice, Juno&apos;s insights reference your actual spending — specific merchants, amounts, and patterns:
+                  </p>
+                  <div className="bg-bare-bg rounded-xl p-4 border border-bare-card-border">
+                    <p className="text-sm italic text-bare-text">
+                      &quot;Good morning, Law. That Tesco trip yesterday was hefty. You&apos;ve got £85 safe to spend this week, but council tax hits in 3 days — keep that in mind.&quot;
+                    </p>
+                  </div>
+                  <p className="text-bare-muted text-sm mt-4">
+                    Insights are 30-40 words — long enough to be useful, short enough to scan at a glance.
+                  </p>
+                </div>
+
+                <div className="card">
+                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
+                    Dynamic Status Colours
+                  </h3>
+                  <p className="text-bare-muted mb-4">
+                    Juno&apos;s insight changes colour based on your financial status — so you can tell at a glance how you&apos;re doing:
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3 p-3 bg-bare-safe/10 rounded-lg border border-bare-safe/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-safe"></div>
+                      <div>
+                        <p className="font-medium text-bare-safe">Green — Healthy</p>
+                        <p className="text-sm text-bare-muted">More than £50 safe to spend</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-bare-warning/10 rounded-lg border border-bare-warning/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-warning"></div>
+                      <div>
+                        <p className="font-medium text-bare-warning">Amber — Caution</p>
+                        <p className="text-sm text-bare-muted">£20 to £50 safe to spend</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 bg-bare-danger/10 rounded-lg border border-bare-danger/20">
+                      <div className="w-3 h-3 rounded-full bg-bare-danger"></div>
+                      <div>
+                        <p className="font-medium text-bare-danger">Red — Alert</p>
+                        <p className="text-sm text-bare-muted">Less than £20 or shortfall detected</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="card">
@@ -520,18 +592,24 @@ export default function DocsPage() {
                   <h3 className="font-display text-xl font-semibold text-bare-text mb-4">
                     Personality Modes
                   </h3>
+                  <p className="text-bare-muted mb-4">
+                    Everyone handles feedback differently. Choose how Juno talks to you:
+                  </p>
                   <div className="space-y-4">
                     <div className="p-4 bg-bare-bg rounded-xl">
                       <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Flame size={16} className="text-bare-danger" /> Brutal</p>
-                      <p className="text-bare-muted text-sm">&quot;Three Uber Eats orders in two days? That&apos;s £45 you didn&apos;t need to spend.&quot;</p>
+                      <p className="text-xs text-bare-muted mb-2">Direct, no sugar-coating, strong but clean language</p>
+                      <p className="text-bare-text text-sm italic">&quot;Three Uber Eats orders in two days? That&apos;s £45 you didn&apos;t need to spend. Get your act together.&quot;</p>
                     </div>
                     <div className="p-4 bg-bare-bg rounded-xl">
                       <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Scale size={16} className="text-bare-accent" /> Balanced</p>
-                      <p className="text-bare-muted text-sm">&quot;Bit tight this week. You&apos;ve got £200 left — maybe hold off on non-essentials.&quot;</p>
+                      <p className="text-xs text-bare-muted mb-2">Witty and honest, like a friend who keeps it real</p>
+                      <p className="text-bare-text text-sm italic">&quot;Bit tight this week. You&apos;ve got £200 left — maybe hold off on non-essentials unless you fancy beans on toast until payday.&quot;</p>
                     </div>
                     <div className="p-4 bg-bare-bg rounded-xl">
                       <p className="font-semibold text-bare-text mb-1 flex items-center gap-2"><Heart size={16} className="text-bare-safe" /> Gentle</p>
-                      <p className="text-bare-muted text-sm">&quot;Things are a bit stretched, but you&apos;re doing okay. Just ease up on extras if you can.&quot;</p>
+                      <p className="text-xs text-bare-muted mb-2">Supportive and encouraging while still being honest</p>
+                      <p className="text-bare-text text-sm italic">&quot;Things are a bit stretched, but you&apos;re managing. Just ease up on extras if you can — you&apos;ve got this.&quot;</p>
                     </div>
                   </div>
                   <p className="text-bare-muted text-sm mt-4">
@@ -778,11 +856,11 @@ export default function DocsPage() {
                 />
                 <FAQItem
                   question="What data does Juno see?"
-                  answer="Juno sees spending summaries (categories + amounts), your safe-to-spend amount, and bill status. We don't send raw transaction descriptions or merchant names."
+                  answer="Juno sees spending summaries (categories + amounts), your safe-to-spend amount, bill status, and recent transaction patterns. She uses this to give contextual insights that reference specific merchants and amounts."
                 />
                 <FAQItem
                   question="How do I change Juno's personality?"
-                  answer="Go to Settings → Juno Personality. Choose from Brutal, Balanced, or Gentle."
+                  answer="Go to Settings → Juno Personality. Choose from Brutal (direct, no sugar-coating), Balanced (witty friend who keeps it real), or Gentle (supportive and encouraging)."
                 />
                 <FAQItem
                   question="Is this really free?"
