@@ -21,10 +21,7 @@ import {
   AlertTriangle,
   Calculator,
   RefreshCw,
-  Sparkles,
-  MessageSquare,
-  Filter,
-  Clock
+  Filter
 } from 'lucide-react'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
@@ -528,85 +525,6 @@ export default function DocsPage() {
                   <p className="text-bare-muted">
                     Juno appears at the top of your dashboard with a personalised insight that updates each time you open the app. Insights appear with a smooth typewriter animation in a speech bubble card.
                   </p>
-                </div>
-
-                <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
-                    <Clock size={20} className="text-bare-accent" />
-                    Smart Time-Based Greetings
-                  </h3>
-                  <p className="text-bare-muted mb-4">
-                    Juno knows what time it is. She greets you appropriately based on your local device time:
-                  </p>
-                  <div className="space-y-2">
-                    <div className="bg-bare-bg rounded-lg p-3">
-                      <p className="text-sm text-bare-muted">Morning (5am - 12pm)</p>
-                      <p className="text-bare-text font-medium">&quot;Good morning, Sarah...&quot;</p>
-                    </div>
-                    <div className="bg-bare-bg rounded-lg p-3">
-                      <p className="text-sm text-bare-muted">Afternoon (12pm - 5pm)</p>
-                      <p className="text-bare-text font-medium">&quot;Good afternoon, Sarah...&quot;</p>
-                    </div>
-                    <div className="bg-bare-bg rounded-lg p-3">
-                      <p className="text-sm text-bare-muted">Evening (5pm - 9pm)</p>
-                      <p className="text-bare-text font-medium">&quot;Good evening, Sarah...&quot;</p>
-                    </div>
-                    <div className="bg-bare-bg rounded-lg p-3">
-                      <p className="text-sm text-bare-muted">Late night (9pm - 5am)</p>
-                      <p className="text-bare-text font-medium">&quot;Hey, Sarah...&quot;</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
-                    <MessageSquare size={20} className="text-bare-accent" />
-                    Contextual Insights
-                  </h3>
-                  <p className="text-bare-muted mb-4">
-                    Unlike generic budgeting advice, Juno&apos;s insights reference your actual spending — specific merchants, amounts, and patterns:
-                  </p>
-                  <div className="bg-bare-bg rounded-xl p-4 border border-bare-card-border">
-                    <p className="text-sm italic text-bare-text">
-                      &quot;Good morning, Law. That Tesco trip yesterday was hefty. You&apos;ve got £85 safe to spend this week, but council tax hits in 3 days — keep that in mind.&quot;
-                    </p>
-                  </div>
-                  <p className="text-bare-muted text-sm mt-4">
-                    Default insight length is around 40 words — long enough to be useful, short enough to scan at a glance. This can be configured between 10-200 words.
-                  </p>
-                </div>
-
-                <div className="card">
-                  <h3 className="font-display text-xl font-semibold text-bare-text mb-4 flex items-center gap-2">
-                    <Sparkles size={20} className="text-bare-accent" />
-                    Visual Presentation
-                  </h3>
-                  <p className="text-bare-muted mb-4">
-                    Juno&apos;s insights are designed to feel conversational and engaging:
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
-                      <div>
-                        <p className="font-medium text-bare-text">Speech bubble card</p>
-                        <p className="text-sm text-bare-muted">Insights appear in a gradient-bordered card with status-coloured accents</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
-                      <div>
-                        <p className="font-medium text-bare-text">Animated avatar</p>
-                        <p className="text-sm text-bare-muted">Sparkles icon with subtle animation draws attention to the insight</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <ChevronRight className="text-bare-accent flex-shrink-0 mt-1" size={18} />
-                      <div>
-                        <p className="font-medium text-bare-text">Typewriter effect</p>
-                        <p className="text-sm text-bare-muted">Text appears character by character (25ms per character) with a blinking cursor</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 <div className="card">
