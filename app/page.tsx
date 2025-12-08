@@ -65,11 +65,9 @@ export default function LandingPage() {
                 <p className="text-bare-muted text-sm mt-1">until Thursday</p>
               </div>
               <div className="flex items-start gap-3 pt-4 border-t border-bare-card-border">
-                <img
-                  src="/baremoney.png"
-                  alt="Juno"
-                  className="w-8 h-8 rounded-[22%] flex-shrink-0"
-                />
+                <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-4 h-4 text-white" />
+                </div>
                 <div className="text-left">
                   <p className="text-sm font-medium text-bare-safe">Juno</p>
                   <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
@@ -452,11 +450,9 @@ export default function LandingPage() {
                       {/* Juno mockup */}
                       <div className="mb-6">
                         <div className="flex items-start gap-3">
-                          <img
-                            src="/baremoney.png"
-                            alt="Juno"
-                            className="w-8 h-8 rounded-[22%] flex-shrink-0"
-                          />
+                          <div className="w-8 h-8 rounded-full bg-bare-accent flex items-center justify-center flex-shrink-0">
+                            <Brain className="w-4 h-4 text-white" />
+                          </div>
                           <div>
                             <p className="text-sm font-medium text-bare-safe">Juno</p>
                             <p className="text-sm text-bare-muted">Good morning. That Tesco trip was hefty, but you&apos;re still solid until Thursday.</p>
